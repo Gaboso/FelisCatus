@@ -11,7 +11,7 @@ package br.edu.ifms.lp3.util;
 public class ValidateCPF {
 
     public boolean isCPF(String cpf) {
-
+        //TODO corrigir verificacoes
         if (cpf.equals("00000000000") || cpf.equals("11111111111")
                 || cpf.equals("22222222222") || cpf.equals("33333333333")
                 || cpf.equals("44444444444") || cpf.equals("55555555555")

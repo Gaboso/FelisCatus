@@ -33,7 +33,7 @@ public class Validator {
             return false;
         } else {
             String addressLC = address.toLowerCase();
-
+            //TODO corrigir condições
             boolean part1 = addressLC.startsWith("rua ") || addressLC.startsWith("avenida ") || addressLC.startsWith("alameda ");
             boolean part2 = addressLC.startsWith("av. ") || addressLC.startsWith("beco ") || addressLC.startsWith("viela ");
             boolean part3 = addressLC.startsWith("praça ") || addressLC.startsWith("r. ");
@@ -44,6 +44,7 @@ public class Validator {
 
     public boolean checkPhone(String phone) {
         Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
+        //TODO aumentar cobertura
         Matcher matcher = pattern.matcher(phone);
 
         // Se não for igual a nenhuma da condições acima
