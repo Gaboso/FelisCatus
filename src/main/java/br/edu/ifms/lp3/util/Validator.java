@@ -1,6 +1,8 @@
 package br.edu.ifms.lp3.util;
 
 import javax.swing.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Classe com métodos úteis para realizar validações
@@ -9,14 +11,14 @@ public class Validator {
 
     public boolean checkCPF(String cpf) {
         // se CPF estiver vazio
-        if (cpf.equals("   .   .   -  ")) {
+        if ("   .   .   -  ".equals(cpf)) {
             return false;
         } else {
             ValidateCPF validateCPF = new ValidateCPF();
-            cpf = cpf.replace(".", "");
-            cpf = cpf.replace("-", "");
+            String cpfNoMask = cpf.replace(".", "");
+            cpfNoMask = cpfNoMask.replace("-", "");
             // Se o CPF for verdadeiro
-            return validateCPF.isCPF(cpf);
+            return validateCPF.isCPF(cpfNoMask);
         }
     }
 
@@ -30,22 +32,22 @@ public class Validator {
         if (address.isEmpty()) {
             return false;
         } else {
-            String addressLowerCase = address.toLowerCase();
+            String addressLC = address.toLowerCase();
 
-            return addressLowerCase.startsWith("rua ") || addressLowerCase.startsWith("avenida ")
-                    || addressLowerCase.startsWith("alameda ") || addressLowerCase.startsWith("av. ")
-                    || addressLowerCase.startsWith("beco ") || addressLowerCase.startsWith("viela ")
-                    || addressLowerCase.startsWith("praça ") || addressLowerCase.startsWith("r. ");
+            boolean part1 = addressLC.startsWith("rua ") || addressLC.startsWith("avenida ") || addressLC.startsWith("alameda ");
+            boolean part2 = addressLC.startsWith("av. ") || addressLC.startsWith("beco ") || addressLC.startsWith("viela ");
+            boolean part3 = addressLC.startsWith("praça ") || addressLC.startsWith("r. ");
+
+            return part1 || part2 || part3;
         }
     }
 
     public boolean checkPhone(String phone) {
-        // Se telefone estiver vazio
-        return !(phone.equals("(  )     -    ") || phone.equals("(11) 1111-1111")
-                || phone.equals("(22) 2222-2222") || phone.equals("(33) 3333-3333")
-                || phone.equals("(44) 4444-4444") || phone.equals("(55) 5555-5555")
-                || phone.equals("(66) 6666-6666") || phone.equals("(77) 7777-7777")
-                || phone.equals("(88) 8888-8888") || phone.equals("(99) 9999-9999"));
+        Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
+        Matcher matcher = pattern.matcher(phone);
+
+        // Se não for igual a nenhuma da condições acima
+        return matcher.find();
     }
 
     /**

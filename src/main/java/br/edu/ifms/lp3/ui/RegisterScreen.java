@@ -99,9 +99,9 @@ public class RegisterScreen extends ScreenHelper {
                 Validator validator = new Validator();
                 // Se tiver algum texto
                 if (validator.checkName(fieldName.getText()))
-                    setValidationStyle(labelName, imageName, green, "certo");
+                    setValidationStyle(labelName, imageName, GREEN, "certo");
                 else
-                    setValidationStyle(labelName, imageName, red, "erro");
+                    setValidationStyle(labelName, imageName, RED, "erro");
             }
         });
         registerPanel.add(fieldName, "cell 1 0 2 1,growx,aligny center");
@@ -131,9 +131,9 @@ public class RegisterScreen extends ScreenHelper {
                 Validator validator = new Validator();
                 // Se for um CPF válido
                 if (validator.checkCPF(fieldCPF.getText())) {
-                    setValidationStyle(labelCPF, imageCPF, green, "certo");
+                    setValidationStyle(labelCPF, imageCPF, GREEN, "certo");
                 } else {
-                    setValidationStyle(labelCPF, imageCPF, red, "erro");
+                    setValidationStyle(labelCPF, imageCPF, RED, "erro");
                 }
             }
         });
@@ -159,9 +159,9 @@ public class RegisterScreen extends ScreenHelper {
                 Validator validator = new Validator();
 
                 if (validator.checkPhone(fieldPhone.getText())) {
-                    setValidationStyle(labelPhone, imagePhone, green, "certo");
+                    setValidationStyle(labelPhone, imagePhone, GREEN, "certo");
                 } else {
-                    setValidationStyle(labelPhone, imagePhone, red, "erro");
+                    setValidationStyle(labelPhone, imagePhone, RED, "erro");
                 }
             }
         });
@@ -194,9 +194,9 @@ public class RegisterScreen extends ScreenHelper {
                 Validator validator = new Validator();
                 // Se passar nas validações
                 if (validator.checkAddress(fieldAddress.getText())) {
-                    setValidationStyle(labelAddress, imageAddress, green, "certo");
+                    setValidationStyle(labelAddress, imageAddress, GREEN, "certo");
                 } else {
-                    setValidationStyle(labelAddress, imageAddress, red, "erro");
+                    setValidationStyle(labelAddress, imageAddress, RED, "erro");
                 }
             }
         });
@@ -321,10 +321,10 @@ public class RegisterScreen extends ScreenHelper {
      */
     private void clearFormatting() {
         // Setando cor dos labels para preto
-        labelCPF.setForeground(black);
-        labelName.setForeground(black);
-        labelAddress.setForeground(black);
-        labelPhone.setForeground(black);
+        labelCPF.setForeground(BLACK);
+        labelName.setForeground(BLACK);
+        labelAddress.setForeground(BLACK);
+        labelPhone.setForeground(BLACK);
         // Setando ícones para nulo
         imageCPF.setIcon(null);
         imageAddress.setIcon(null);

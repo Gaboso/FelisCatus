@@ -2,7 +2,7 @@
 
 Trabalho apresentado na matéria de linguagem de programação III, por Gabriel Carvalho.
 
-Este projeto utiliza: Java, PostgreSQL, Hibernate_ e _Maven_
+Este projeto utiliza: _Java, PostgreSQL, Hibernate_ e _Maven_
 
 ## Objetivo
 

@@ -10,7 +10,7 @@ import java.util.List;
 public class ClienteDAO extends JpaDAO<Cliente> {
 
     /**
-     * Metodo para recuperar todos os registros do banco
+     * Método para recuperar todos os registros do banco
      *
      * @return retorna lista com os resultados
      */
@@ -30,7 +30,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
 
 
     /**
-     * Metodo para buscar no BD por nome
+     * Método para buscar no BD por nome
      *
      * @param name - Nome digitado no filtro
      * @return retorna lista com os resultados

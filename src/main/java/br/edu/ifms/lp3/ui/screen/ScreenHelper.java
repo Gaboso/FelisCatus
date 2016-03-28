@@ -10,12 +10,18 @@ import java.awt.*;
  */
 public abstract class ScreenHelper {
 
-    public static Color grey = new Color(192, 192, 192);
-    public static Color black = new Color(51, 51, 51);
-    public static Color red = new Color(244, 67, 54);
-    public static Color green = new Color(67, 160, 71);
 
-    private static LineBorder lineBorder = new LineBorder(grey, 1, true);
+    public static final Color GREY = new Color(192, 192, 192);
+    public static final Color BLACK = new Color(51, 51, 51);
+    public static final Color RED = new Color(244, 67, 54);
+    public static final Color GREEN = new Color(67, 160, 71);
+
+    private static LineBorder lineBorder = new LineBorder(GREY, 1, true);
+
+    /**
+     * Construtor privado
+     private ScreenHelper() {
+     }*/
 
     /**
      * Método para criar uma borda
@@ -24,7 +30,7 @@ public abstract class ScreenHelper {
      * @return retorna uma borda
      */
     public static TitledBorder makeBorder(String title) {
-        return new TitledBorder(lineBorder, title, TitledBorder.LEADING, TitledBorder.TOP, null, black);
+        return new TitledBorder(lineBorder, title, TitledBorder.LEADING, TitledBorder.TOP, null, BLACK);
     }
 
     /**
