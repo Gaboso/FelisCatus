@@ -296,7 +296,7 @@ public class RegisterScreen extends ScreenHelper {
 
         scrollpane = new JScrollPane();
         panelSearch.add(scrollpane, "cell 0 1 3 1,grow");
-        // Passando 2 como parâmetro para buscar todos
+        // Passando 2 como parâmetro para buscar tudo
         createTable(2);
     }
 
@@ -372,12 +372,12 @@ public class RegisterScreen extends ScreenHelper {
 
         // Convertendo para char
         char sex = sexString.charAt(0);
-        // Chamando o método que vai setar todos os dados pegos e por na tela
+        // Chamando o método que vai setar tudo os dados pegos e por na tela
         setDataOnFields(name, cpf, address, sex, phone);
     }
 
     /**
-     * Método que recebe todos os dados que foram pegos do banco, mas passaram
+     * Método que recebe tudo que foi pego do banco, mas passaram
      * por um tratamento e seleção e seta estes dados na tela de forma que fique
      * visível para o usuário
      *
@@ -405,7 +405,7 @@ public class RegisterScreen extends ScreenHelper {
      * Método para a criação de tabela e preenchimento da mesma com os dados do
      * banco
      *
-     * @param opcao se vai buscar por nome ou buscar todos
+     * @param opcao se vai buscar por nome ou buscar tudo do banco
      *              <p>
      *              <table border="1">
      *              <th>opcao 1</th>
@@ -415,7 +415,7 @@ public class RegisterScreen extends ScreenHelper {
      *              por um determinado nome ou pedaço do<br>
      *              mesmo, no banco de dados</td>
      *              <td>opção 2, é para buscar conteúdo da tabela<br>
-     *              por completo e trazer todos registros <br>
+     *              por completo e trazer tudo o que encontrar no banco<br>
      *              do banco de dados</td>
      *              </tr>
      *              </table>
@@ -458,7 +458,7 @@ public class RegisterScreen extends ScreenHelper {
 
     /**
      * Método concentrador de outros métodos que realizam ações como: apagar
-     * todos os textos, formatações e esconder botões especiais da tela
+     * tudo que for texto, formatação e esconder botões especiais da tela
      */
     private void clearScreen() {
         // Apaga o texto
@@ -470,7 +470,7 @@ public class RegisterScreen extends ScreenHelper {
     }
 
     /**
-     * Método para mostrar mensagem que não foi preenchida todos os campos
+     * Método para mostrar mensagem que não foi preenchida os campos necessários
      */
     private void showErrorMessage() {
         JOptionPane.showMessageDialog(registerPanel, "Preencha todos os campos corretamente", "ERRO", JOptionPane.ERROR_MESSAGE);
