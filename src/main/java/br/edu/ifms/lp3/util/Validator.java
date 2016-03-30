@@ -22,6 +22,36 @@ public class Validator {
         }
     }
 
+    /**
+     * Método para verificar se os dígitos são iguais
+     *
+     * @param text               - Texto a ser verificado
+     * @param minimumOccurrences - Quantidade minima de ocorrencia de caracteres para considerar que os caracteres são iguais
+     * @return Retorna true caso um digito se repita na quantidade informada no minimumOccurrences, caso contrario retorna false;
+     */
+    public boolean digitsAreEquals(String text, int minimumOccurrences) {
+
+        for (int i = 0; i < text.length(); i++) {
+            int occurrences = 0;
+
+            for (int j = 0; j < text.length(); j++) {
+                if (text.charAt(i) == text.charAt(j))
+                    occurrences++;
+            }
+
+            if (occurrences == minimumOccurrences)
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Verifica se o nome não esta vazio e possui até 70 caracteres
+     *
+     * @param name - Nome a ser checado
+     * @return retorna true caso obedeça as condições abaixo
+     */
     public boolean checkName(String name) {
         // Se nome estiver vazio e se nome tiver menos que 70 caracteres
         return !name.isEmpty() && name.trim().length() < 70;
@@ -43,12 +73,15 @@ public class Validator {
     }
 
     public boolean checkPhone(String phone) {
-        Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
-        //TODO aumentar cobertura
-        Matcher matcher = pattern.matcher(phone);
+        if (phone.length() != 14 || digitsAreEquals(phone, 10)) {
+            return false;
+        } else {
+            Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
+            Matcher matcher = pattern.matcher(phone);
 
-        // Se não for igual a nenhuma da condições acima
-        return matcher.find();
+            // Se não for igual a nenhuma da condições acima
+            return matcher.find();
+        }
     }
 
     /**
