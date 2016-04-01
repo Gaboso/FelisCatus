@@ -4,8 +4,6 @@ import java.util.List;
 
 /**
  * Classe que vai modelar os dados do banco e colocar em uma Matriz
- *
- * @author Gabriel
  */
 public class Matriz {
 
@@ -13,7 +11,7 @@ public class Matriz {
      * Método para montar matriz com dados do BD
      *
      * @param dataFromDB - Dados pegos no BD
-     * @return retorna matriz com os dados dos clientes
+     * @return Retorna matriz com os dados dos clientes
      */
     public String[][] mountMatriz(List<String[]> dataFromDB) {
         // Tamanho do vetor pego no banco

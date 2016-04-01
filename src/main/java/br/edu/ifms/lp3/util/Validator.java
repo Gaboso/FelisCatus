@@ -9,6 +9,12 @@ import java.util.regex.Pattern;
  */
 public class Validator {
 
+    /**
+     * Método para auxiliar na validação do CPF
+     *
+     * @param cpf - CPF a ser validado
+     * @return Retorna true se o cpf for valido e false caso contrário
+     */
     public boolean checkCPF(String cpf) {
         // se CPF estiver vazio
         if ("   .   .   -  ".equals(cpf)) {
@@ -26,8 +32,8 @@ public class Validator {
      * Método para verificar se os dígitos são iguais
      *
      * @param text               - Texto a ser verificado
-     * @param minimumOccurrences - Quantidade minima de ocorrencia de caracteres para considerar que os caracteres são iguais
-     * @return Retorna true caso um digito se repita na quantidade informada no minimumOccurrences, caso contrario retorna false;
+     * @param minimumOccurrences - Quantidade minima de ocorrência de caracteres para considerar que os caracteres são iguais
+     * @return Retorna true se  um digito se repita na quantidade informada no minimumOccurrences e false caso contrário
      */
     public boolean digitsAreEquals(String text, int minimumOccurrences) {
 
@@ -47,16 +53,22 @@ public class Validator {
     }
 
     /**
-     * Verifica se o nome não esta vazio e possui até 70 caracteres
+     * Método para verificar se o nome não esta vazio e possui até 70 caracteres
      *
-     * @param name - Nome a ser checado
-     * @return retorna true caso obedeça as condições abaixo
+     * @param name - Nome a ser validado
+     * @return Retorna true se o nome for valido e false caso contrário
      */
     public boolean checkName(String name) {
         // Se nome estiver vazio e se nome tiver menos que 70 caracteres
         return !name.isEmpty() && name.trim().length() < 70;
     }
 
+    /**
+     * Método para validar um endereço
+     *
+     * @param address - Endereço a ser validado
+     * @return Retorna true se o endereço for valido e false caso contrário
+     */
     public boolean checkAddress(String address) {
         // Se endereço estiver vazio
         if (address.isEmpty()) {
@@ -72,14 +84,18 @@ public class Validator {
         }
     }
 
+    /**
+     * Método para validar telefone
+     *
+     * @param phone - Telefone a ser validado
+     * @return Retorna true se o telefone for valido e false caso contrário
+     */
     public boolean checkPhone(String phone) {
         if (phone.length() != 14 || digitsAreEquals(phone, 10)) {
             return false;
         } else {
             Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
             Matcher matcher = pattern.matcher(phone);
-
-            // Se não for igual a nenhuma da condições acima
             return matcher.find();
         }
     }
@@ -87,7 +103,9 @@ public class Validator {
     /**
      * Método que ira verificar se os sexo foi selecionado
      *
-     * @return retorna true se algum botão foi selecionado, e falso se contrario
+     * @param male   - RadioButton masculino
+     * @param female - RadioButton feminino
+     * @return Retorna true se algum radio button foi selecionado for valido e false caso contrário
      */
     private boolean checkRadioButton(JRadioButton male, JRadioButton female) {
         return female.isSelected() || male.isSelected();
@@ -95,7 +113,7 @@ public class Validator {
 
     /**
      * Método que verifica se todos os requisitos foram preenchidos, se foram
-     * preenchidos corretamente retora false, caso contrario retorna true.<br>
+     * preenchidos corretamente retora false, caso contrário retorna true.<br>
      * <p>
      * <br>
      * erro = false -> OK<br>
@@ -107,7 +125,7 @@ public class Validator {
      * @param phone   - Telefone que foi digitado na tela
      * @param male    - Botão do sexo masculino
      * @param female  - Botão do sexo feminino
-     * @return retorna true se possuir algum erro e false se não houver nenhum
+     * @return Retorna true se possuir algum erro for valido e false caso contrário
      */
     boolean checkAll(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
         return !checkAddress(address) || !checkName(name) || !checkCPF(cpf)

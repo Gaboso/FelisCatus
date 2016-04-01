@@ -1,7 +1,7 @@
 package br.edu.ifms.lp3.util;
 
 /**
- * Classe pega no DevMedia e otimizada por Gabriel Santiago de caravalho
+ * Classe pega no DevMedia e otimizada por Gabriel Carvalho
  * <p>
  * Link Original:
  * http://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
@@ -10,7 +10,12 @@ package br.edu.ifms.lp3.util;
  */
 public class ValidateCPF {
 
-
+    /**
+     * Método para validar o CPF
+     *
+     * @param cpf - CPF a ser validado
+     * @return Retorna true se for um cpf valido ou false caso contrario
+     */
     public boolean isCPF(String cpf) {
 
         Validator validator = new Validator();

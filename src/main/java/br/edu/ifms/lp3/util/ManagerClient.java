@@ -18,7 +18,7 @@ public class ManagerClient {
      * @param phone   - Telefone do cliente
      * @param cpf     - CPF do cliente
      * @param sex     - Sexo do cliente
-     * @return objeto de cliente
+     * @return Retorna o objeto de cliente
      */
     public Cliente createClient(String address, String name, String phone, String cpf, char sex) {
         Cliente client = new Cliente();
@@ -37,7 +37,7 @@ public class ManagerClient {
      *
      * @param client - Objeto do cliente
      * @param frame  - Frame atual
-     * @return true se foi possível cadastrar e false caso contrario
+     * @return Retorna true se foi possível cadastrar e false caso contrário
      */
     public boolean recordClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
@@ -56,6 +56,7 @@ public class ManagerClient {
      *
      * @param client - Objeto do cliente
      * @param frame  - Frame atual
+     * @return Retorna true se foi possível atualizar e false caso contrário
      */
     public boolean updateClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
@@ -74,7 +75,7 @@ public class ManagerClient {
      *
      * @param client - Objeto do cliente
      * @param frame  - Frame atual
-     * @return true se foi possível remover e false caso contrario
+     * @return Retorna true se foi possível remover e false caso contrário
      */
     public boolean removeClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
@@ -97,7 +98,7 @@ public class ManagerClient {
      * @param phone             - Telefone do cliente
      * @param radioButtonFemale - Botão de radio feminino
      * @param radioButtonMale   - Botão de radio feminino masculino
-     * @return objeto de cliente, null se não estiver com dados corretos
+     * @return Retorna objeto do cliente se foi possível cadastrar e null caso contrário
      */
     public Cliente createValidateClient(String name, String address, String cpf, String phone,
                                         JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {
