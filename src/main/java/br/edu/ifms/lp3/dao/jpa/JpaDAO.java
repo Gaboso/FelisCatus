@@ -18,7 +18,7 @@ public class JpaDAO<T> implements Dao<T> {
 
     private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
 
-    EntityManager em;
+    protected EntityManager em;
 
     /**
      * Método genérico para salvar

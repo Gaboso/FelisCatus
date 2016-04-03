@@ -1,14 +1,15 @@
 package br.edu.ifms.lp3.util;
 
-import br.edu.ifms.lp3.dao.jpa.ClienteDAO;
+import br.edu.ifms.lp3.dao.ClienteDAO;
 import br.edu.ifms.lp3.model.Cliente;
+import br.edu.ifms.lp3.helper.ScreenHelper;
 
 import javax.swing.*;
 
 /**
  * Classe com métodos auxiliares ao uso da classe Client
  */
-public class ManagerClient {
+public class ManagerClient extends ScreenHelper{
 
     /**
      * Método que cria um objeto de cliente com os dados capturados na tela
@@ -18,9 +19,9 @@ public class ManagerClient {
      * @param phone   - Telefone do cliente
      * @param cpf     - CPF do cliente
      * @param sex     - Sexo do cliente
-     * @return objeto de cliente
+     * @return Retorna o objeto de cliente
      */
-    public Cliente createClient(String address, String name, String phone, String cpf, char sex) {
+    private Cliente createClient(String address, String name, String phone, String cpf, char sex) {
         Cliente client = new Cliente();
 
         client.setNome(name);
@@ -37,7 +38,7 @@ public class ManagerClient {
      *
      * @param client - Objeto do cliente
      * @param frame  - Frame atual
-     * @return true se foi possível cadastrar e false caso contrario
+     * @return Retorna true se foi possível cadastrar e false caso contrário
      */
     public boolean recordClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
@@ -46,7 +47,7 @@ public class ManagerClient {
             JOptionPane.showMessageDialog(frame, "Cadastro efetuado com sucesso", "Cadastrado", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            JOptionPane.showMessageDialog(frame, "CPF já cadastrado", "ERRO", JOptionPane.ERROR_MESSAGE);
+            showMessageError(frame, "CPF já cadastrado");
             return false;
         }
     }
@@ -56,6 +57,7 @@ public class ManagerClient {
      *
      * @param client - Objeto do cliente
      * @param frame  - Frame atual
+     * @return Retorna true se foi possível atualizar e false caso contrário
      */
     public boolean updateClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
@@ -64,7 +66,7 @@ public class ManagerClient {
             JOptionPane.showMessageDialog(frame, "Cadastro atualizado com sucesso", "Atualizado", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            JOptionPane.showMessageDialog(frame, "Não foi possível atualizar", "ERRO", JOptionPane.ERROR_MESSAGE);
+            showMessageError(frame, "Não foi possível atualizar");
             return false;
         }
     }
@@ -74,7 +76,7 @@ public class ManagerClient {
      *
      * @param client - Objeto do cliente
      * @param frame  - Frame atual
-     * @return true se foi possível remover e false caso contrario
+     * @return Retorna true se foi possível remover e false caso contrário
      */
     public boolean removeClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
@@ -83,7 +85,7 @@ public class ManagerClient {
             JOptionPane.showMessageDialog(frame, "Cadastro removido com sucesso", "Removido", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            JOptionPane.showMessageDialog(frame, "Não foi possível remover", "ERRO", JOptionPane.ERROR_MESSAGE);
+            showMessageError(frame, "Não foi possível remover");
             return false;
         }
     }
@@ -97,7 +99,7 @@ public class ManagerClient {
      * @param phone             - Telefone do cliente
      * @param radioButtonFemale - Botão de radio feminino
      * @param radioButtonMale   - Botão de radio feminino masculino
-     * @return objeto de cliente, null se não estiver com dados corretos
+     * @return Retorna objeto do cliente se foi possível cadastrar e null caso contrário
      */
     public Cliente createValidateClient(String name, String address, String cpf, String phone,
                                         JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {

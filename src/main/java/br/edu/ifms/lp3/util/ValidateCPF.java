@@ -1,7 +1,7 @@
 package br.edu.ifms.lp3.util;
 
 /**
- * Classe pega no DevMedia e otimizada por Gabriel Santiago de caravalho
+ * Classe pega no DevMedia e otimizada por Gabriel Carvalho
  * <p>
  * Link Original:
  * http://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
@@ -10,16 +10,20 @@ package br.edu.ifms.lp3.util;
  */
 public class ValidateCPF {
 
+    /**
+     * Método para validar o CPF
+     *
+     * @param cpf - CPF a ser validado
+     * @return Retorna true se for um cpf valido ou false caso contrario
+     */
     public boolean isCPF(String cpf) {
 
-        if ("00000000000".equals(cpf) || "11111111111".equals(cpf)
-                || "22222222222".equals(cpf) || "33333333333".equals(cpf)
-                || "44444444444".equals(cpf) || "55555555555".equals(cpf)
-                || "66666666666".equals(cpf) || "77777777777".equals(cpf)
-                || "88888888888".equals(cpf) || "99999999999".equals(cpf)) {
+        Validator validator = new Validator();
+
+        // Se o tamanho do cpf for diferente de 11 ou possuir ao 11 caracteres iguais
+        if (cpf.length() != 11 || validator.digitsAreEquals(cpf, 11)) {
             return false;
         } else {
-            int r;
             int i;
 
             ValidateCPF validateCPF = new ValidateCPF();
@@ -32,7 +36,7 @@ public class ValidateCPF {
                 weight--;
             }
 
-            r = 11 - (sum % 11);
+            int r = 11 - (sum % 11);
             char tenDigit = validateCPF.verifyR(r);
 
             // Cálculo do 2° dígito verificador
