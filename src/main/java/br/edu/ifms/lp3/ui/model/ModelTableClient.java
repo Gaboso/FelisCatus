@@ -1,5 +1,7 @@
 package br.edu.ifms.lp3.ui.model;
 
+import br.edu.ifms.lp3.constant.Textual;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -9,7 +11,8 @@ public class ModelTableClient extends DefaultTableModel {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String[] COLUMN_NAME = {"Nome", "CPF", "Endereco", "Sexo", "Telefone"};
+    private static final String[] COLUMN_NAME = {Textual.NOME, Textual.CPF,
+            Textual.ENDERECO, Textual.SEXO, Textual.TELEFONE};
 
     public ModelTableClient(String[][] data) {
         super(data, COLUMN_NAME);

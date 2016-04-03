@@ -1,5 +1,6 @@
-package br.edu.ifms.lp3.dao.jpa;
+package br.edu.ifms.lp3.dao;
 
+import br.edu.ifms.lp3.dao.jpa.JpaDAO;
 import br.edu.ifms.lp3.model.Cliente;
 import br.edu.ifms.lp3.util.JPAUtil;
 import org.apache.log4j.Logger;

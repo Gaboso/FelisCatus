@@ -35,7 +35,7 @@ public class Validator {
      * @param minimumOccurrences - Quantidade minima de ocorrência de caracteres para considerar que os caracteres são iguais
      * @return Retorna true se  um digito se repita na quantidade informada no minimumOccurrences e false caso contrário
      */
-    public boolean digitsAreEquals(String text, int minimumOccurrences) {
+    boolean digitsAreEquals(String text, int minimumOccurrences) {
 
         for (int i = 0; i < text.length(); i++) {
             int occurrences = 0;
@@ -75,12 +75,15 @@ public class Validator {
             return false;
         } else {
             String addressLC = address.toLowerCase();
-            //TODO corrigir condições
-            boolean part1 = addressLC.startsWith("rua ") || addressLC.startsWith("avenida ") || addressLC.startsWith("alameda ");
-            boolean part2 = addressLC.startsWith("av. ") || addressLC.startsWith("beco ") || addressLC.startsWith("viela ");
-            boolean part3 = addressLC.startsWith("praça ") || addressLC.startsWith("r. ");
+            String[] patterns = {"rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r."};
 
-            return part1 || part2 || part3;
+            for (String pattern : patterns) {
+                if (addressLC.startsWith(pattern + " ")) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 
@@ -113,11 +116,7 @@ public class Validator {
 
     /**
      * Método que verifica se todos os requisitos foram preenchidos, se foram
-     * preenchidos corretamente retora false, caso contrário retorna true.<br>
-     * <p>
-     * <br>
-     * erro = false -> OK<br>
-     * erro = true -> !OK
+     * preenchidos corretamente retorna true, caso contrário retorna false.<br>
      *
      * @param address - Endereço que foi digitado na tela
      * @param name    - Nome que foi digitado na tela
@@ -128,8 +127,9 @@ public class Validator {
      * @return Retorna true se possuir algum erro for valido e false caso contrário
      */
     boolean checkAll(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
-        return !checkAddress(address) || !checkName(name) || !checkCPF(cpf)
-                || !checkPhone(phone) || !checkRadioButton(male, female);
+        boolean part1 = checkName(name) && checkCPF(cpf) && checkRadioButton(male, female);
+        boolean part2 = checkAddress(address) && checkPhone(phone);
+        return part1 && part2;
     }
 
 }

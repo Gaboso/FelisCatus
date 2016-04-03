@@ -11,6 +11,11 @@ import java.lang.reflect.Type;
 public class ReflectionUtil {
 
     /**
+     * Construtor privado
+     */
+    private ReflectionUtil(){}
+
+    /**
      * Retorna a classe genérica apontada pelo índice <code>index</code> do
      * objeto <code>obj</code>.
      *
@@ -30,7 +35,7 @@ public class ReflectionUtil {
      * @param index - Índice da classe genérica da classe consultada.
      * @return A classe genérica do classe consultada no índice indicado.
      */
-    public static Class<?> getGenericClass(Class<?> clazz, int index) {
+    private static Class<?> getGenericClass(Class<?> clazz, int index) {
         Type genType = clazz.getGenericSuperclass();
         if (genType instanceof ParameterizedType) {
             ParameterizedType pramType = (ParameterizedType) genType;

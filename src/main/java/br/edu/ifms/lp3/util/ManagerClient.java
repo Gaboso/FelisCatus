@@ -1,14 +1,15 @@
 package br.edu.ifms.lp3.util;
 
-import br.edu.ifms.lp3.dao.jpa.ClienteDAO;
+import br.edu.ifms.lp3.dao.ClienteDAO;
 import br.edu.ifms.lp3.model.Cliente;
+import br.edu.ifms.lp3.helper.ScreenHelper;
 
 import javax.swing.*;
 
 /**
  * Classe com métodos auxiliares ao uso da classe Client
  */
-public class ManagerClient {
+public class ManagerClient extends ScreenHelper{
 
     /**
      * Método que cria um objeto de cliente com os dados capturados na tela
@@ -20,7 +21,7 @@ public class ManagerClient {
      * @param sex     - Sexo do cliente
      * @return Retorna o objeto de cliente
      */
-    public Cliente createClient(String address, String name, String phone, String cpf, char sex) {
+    private Cliente createClient(String address, String name, String phone, String cpf, char sex) {
         Cliente client = new Cliente();
 
         client.setNome(name);
@@ -46,7 +47,7 @@ public class ManagerClient {
             JOptionPane.showMessageDialog(frame, "Cadastro efetuado com sucesso", "Cadastrado", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            JOptionPane.showMessageDialog(frame, "CPF já cadastrado", "ERRO", JOptionPane.ERROR_MESSAGE);
+            showMessageError(frame, "CPF já cadastrado");
             return false;
         }
     }
@@ -65,7 +66,7 @@ public class ManagerClient {
             JOptionPane.showMessageDialog(frame, "Cadastro atualizado com sucesso", "Atualizado", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            JOptionPane.showMessageDialog(frame, "Não foi possível atualizar", "ERRO", JOptionPane.ERROR_MESSAGE);
+            showMessageError(frame, "Não foi possível atualizar");
             return false;
         }
     }
@@ -84,7 +85,7 @@ public class ManagerClient {
             JOptionPane.showMessageDialog(frame, "Cadastro removido com sucesso", "Removido", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            JOptionPane.showMessageDialog(frame, "Não foi possível remover", "ERRO", JOptionPane.ERROR_MESSAGE);
+            showMessageError(frame, "Não foi possível remover");
             return false;
         }
     }
