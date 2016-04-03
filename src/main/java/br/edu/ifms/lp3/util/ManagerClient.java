@@ -1,5 +1,6 @@
 package br.edu.ifms.lp3.util;
 
+import br.edu.ifms.lp3.constant.Textual;
 import br.edu.ifms.lp3.dao.ClienteDAO;
 import br.edu.ifms.lp3.model.Cliente;
 import br.edu.ifms.lp3.helper.ScreenHelper;
@@ -44,10 +45,10 @@ public class ManagerClient extends ScreenHelper{
         ClienteDAO clientDAO = new ClienteDAO();
         // Se ocorreu tudo bem e foi cadastrado
         if (clientDAO.save(client) != null) {
-            JOptionPane.showMessageDialog(frame, "Cadastro efetuado com sucesso", "Cadastrado", JOptionPane.INFORMATION_MESSAGE);
+            showInformationMessage(frame, "efetuado");
             return true;
         } else {
-            showMessageError(frame, "CPF já cadastrado");
+            showMessageError(frame, Textual.CPF_JA_CADASTRADO);
             return false;
         }
     }
@@ -63,10 +64,10 @@ public class ManagerClient extends ScreenHelper{
         ClienteDAO clientDAO = new ClienteDAO();
         // Se ocorreu tudo bem e foi cadastrado
         if (clientDAO.update(client) != null) {
-            JOptionPane.showMessageDialog(frame, "Cadastro atualizado com sucesso", "Atualizado", JOptionPane.INFORMATION_MESSAGE);
+            showInformationMessage(frame, "atualizado");
             return true;
         } else {
-            showMessageError(frame, "Não foi possível atualizar");
+            showMessageError(frame, Textual.IMPOSSIVEL_ATUALIZAR);
             return false;
         }
     }
@@ -82,10 +83,10 @@ public class ManagerClient extends ScreenHelper{
         ClienteDAO clientDAO = new ClienteDAO();
         // Se ocorreu tudo bem e foi cadastrado
         if (clientDAO.remove(client)) {
-            JOptionPane.showMessageDialog(frame, "Cadastro removido com sucesso", "Removido", JOptionPane.INFORMATION_MESSAGE);
+            showInformationMessage(frame, "removido");
             return true;
         } else {
-            showMessageError(frame, "Não foi possível remover");
+            showMessageError(frame, Textual.IMPOSSIVEL_REMOVER);
             return false;
         }
     }

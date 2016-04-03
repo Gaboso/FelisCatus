@@ -50,4 +50,25 @@ public abstract class ScreenHelper {
         JOptionPane.showMessageDialog(frame, message, Textual.ERRO, JOptionPane.ERROR_MESSAGE,
                 getImageIcon(Textual.INCORRETO_48));
     }
+
+    /**
+     * Método pára exibir mensagem informativa
+     *
+     * @param frame   - JFrame a qual a menagem faz parte
+     * @param message - Mensagem a ser exibida
+     */
+    protected void showInformationMessage(JFrame frame, String message) {
+        JOptionPane.showMessageDialog(frame, "Cadastro " + message + " com sucesso!!!", capitalize(message), JOptionPane.INFORMATION_MESSAGE,
+                getImageIcon(Textual.INFORMATIVO_48));
+    }
+
+    /**
+     * Método para transformar a primeira letra de uma palavra em maiúsculo
+     *
+     * @param word - Palavra qual terá a primeira letra em maiúsculo
+     * @return Retorna a palavra já com a primeira letra em caixa alta
+     */
+    private String capitalize(String word) {
+        return word.substring(0, 1).toUpperCase().concat(word.substring(1));
+    }
 }

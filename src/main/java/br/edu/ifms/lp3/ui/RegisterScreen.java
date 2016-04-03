@@ -47,6 +47,7 @@ public class RegisterScreen extends ScreenHelper {
     private JTable table;
 
     private JButton buttonUpdateRecord;
+    private JButton removeButton;
 
     /**
      * Create the application.
@@ -102,9 +103,9 @@ public class RegisterScreen extends ScreenHelper {
                 Validator validator = new Validator();
                 // Se tiver algum texto
                 if (validator.checkName(fieldName.getText()))
-                    setValidationStyle(labelName, imageName, GREEN, Textual.CORRETO_32);
+                    setValidationStyle(labelName, imageName, GREEN, Textual.CORRETO_24);
                 else
-                    setValidationStyle(labelName, imageName, RED, Textual.INCORRETO_32);
+                    setValidationStyle(labelName, imageName, RED, Textual.INCORRETO_24);
             }
         });
         registerPanel.add(fieldName, "cell 1 0 2 1,growx,aligny center");
@@ -134,9 +135,9 @@ public class RegisterScreen extends ScreenHelper {
                 Validator validator = new Validator();
                 // Se for um CPF válido
                 if (validator.checkCPF(fieldCPF.getText())) {
-                    setValidationStyle(labelCPF, imageCPF, GREEN, Textual.CORRETO_32);
+                    setValidationStyle(labelCPF, imageCPF, GREEN, Textual.CORRETO_24);
                 } else {
-                    setValidationStyle(labelCPF, imageCPF, RED, Textual.INCORRETO_32);
+                    setValidationStyle(labelCPF, imageCPF, RED, Textual.INCORRETO_24);
                 }
             }
         });
@@ -205,9 +206,9 @@ public class RegisterScreen extends ScreenHelper {
         clearButton.addActionListener(arg0 -> clearScreen());
         registerPanel.add(clearButton, "flowx,cell 1 5,alignx center,aligny center");
 
-        JButton removeButton = new JButton(Textual.REMOVER);
+        removeButton = new JButton(Textual.REMOVER);
         removeButton.addActionListener(arg0 -> whenRemoveButtonIsPressed());
-
+        removeButton.setVisible(false);
         registerPanel.add(removeButton, "cell 1 5,alignx center,aligny center");
 
         buttonUpdateRecord = new JButton(Textual.ATUALIZAR);
@@ -247,9 +248,9 @@ public class RegisterScreen extends ScreenHelper {
         Validator validator = new Validator();
 
         if (validator.checkPhone(fieldPhone.getText())) {
-            setValidationStyle(labelPhone, imagePhone, GREEN, Textual.CORRETO_32);
+            setValidationStyle(labelPhone, imagePhone, GREEN, Textual.CORRETO_24);
         } else {
-            setValidationStyle(labelPhone, imagePhone, RED, Textual.INCORRETO_32);
+            setValidationStyle(labelPhone, imagePhone, RED, Textual.INCORRETO_24);
         }
     }
 
@@ -260,9 +261,9 @@ public class RegisterScreen extends ScreenHelper {
         Validator validator = new Validator();
         // Se passar nas validações
         if (validator.checkAddress(fieldAddress.getText())) {
-            setValidationStyle(labelAddress, imageAddress, GREEN, Textual.CORRETO_32);
+            setValidationStyle(labelAddress, imageAddress, GREEN, Textual.CORRETO_24);
         } else {
-            setValidationStyle(labelAddress, imageAddress, RED, Textual.INCORRETO_32);
+            setValidationStyle(labelAddress, imageAddress, RED, Textual.INCORRETO_24);
         }
     }
 
@@ -482,8 +483,10 @@ public class RegisterScreen extends ScreenHelper {
                     clearScreen();
                     // Pega os dados referente a linha selecionada
                     getDataFromSelectedRow();
-                    // deixa o botão de atualizar visível
+                    // Deixa o botão de atualizar visível
                     buttonUpdateRecord.setVisible(true);
+                    // Deixa o botão de remover visível
+                    removeButton.setVisible(true);
                 }
             }
         });
@@ -501,5 +504,9 @@ public class RegisterScreen extends ScreenHelper {
         clearFormatting();
         // Esconde o botão de atualizar
         buttonUpdateRecord.setVisible(false);
+        // Esconde o botão de remover
+        removeButton.setVisible(false);
+
+
     }
 }

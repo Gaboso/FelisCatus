@@ -127,9 +127,9 @@ public class Validator {
      * @return Retorna true se possuir algum erro for valido e false caso contrário
      */
     boolean checkAll(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
-        boolean part1 = checkName(name) && checkCPF(cpf) && checkRadioButton(male, female);
-        boolean part2 = checkAddress(address) && checkPhone(phone);
-        return part1 && part2;
+        boolean part1 = !checkName(name) || !checkCPF(cpf) || !checkRadioButton(male, female);
+        boolean part2 = !checkAddress(address) || !checkPhone(phone);
+        return part1 || part2;
     }
 
 }

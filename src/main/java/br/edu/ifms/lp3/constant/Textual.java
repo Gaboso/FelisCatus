@@ -19,10 +19,13 @@ public class Textual {
     public static final String BUSCAR = "Buscar";
     public static final String TITLE = "Cadastro de cliente - 1.0";
     public static final String PREENCHA_OS_CAMPOS = "Preencha todos os campos corretamente";
+    public static final String CPF_JA_CADASTRADO = "CPF já cadastrado";
+    public static final String IMPOSSIVEL_ATUALIZAR = "Não foi possível atualizar";
+    public static final String IMPOSSIVEL_REMOVER = "Não foi possível remover";
 
     // Nome das imagens
-    public static final String CORRETO_32 = "correto_32";
-    public static final String INCORRETO_32 = "incorreto_32";
+    public static final String CORRETO_24 = "correto_24";
+    public static final String INCORRETO_24 = "incorreto_24";
     public static final String INFORMATIVO_48 = "informativo_48";
     public static final String INCORRETO_48 = "incorreto_48";
 
