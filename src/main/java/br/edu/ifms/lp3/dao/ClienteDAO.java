@@ -1,13 +1,17 @@
-package br.edu.ifms.lp3.dao.jpa;
+package br.edu.ifms.lp3.dao;
 
+import br.edu.ifms.lp3.dao.jpa.JpaDAO;
 import br.edu.ifms.lp3.model.Cliente;
 import br.edu.ifms.lp3.util.JPAUtil;
+import org.apache.log4j.Logger;
 
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO extends JpaDAO<Cliente> {
+
+    private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
 
     /**
      * Método para recuperar todos os registros do banco
@@ -23,7 +27,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
             clients = query.getResultList();
             em.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return clients;
     }
@@ -45,7 +49,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
             clients = query.getResultList();
             em.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return clients;
     }

@@ -1,40 +1,43 @@
 package br.edu.ifms.lp3.util;
 
 /**
- * Classe pega no DevMedia e otimizada por Gabriel Santiago de caravalho
+ * Classe pega no DevMedia e otimizada por Gabriel Carvalho
  * <p>
  * Link Original:
  * http://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
  *
- * @author Omero Francisco Bertol Modificado por: Gabriel Santiago de Carvalho
+ * @author Omero Francisco Bertol Modificado por: Gabriel Carvalho
  */
 public class ValidateCPF {
 
+    /**
+     * Método para validar o CPF
+     *
+     * @param cpf - CPF a ser validado
+     * @return Retorna true se for um cpf valido ou false caso contrario
+     */
     public boolean isCPF(String cpf) {
 
-        if (cpf.equals("00000000000") || cpf.equals("11111111111")
-                || cpf.equals("22222222222") || cpf.equals("33333333333")
-                || cpf.equals("44444444444") || cpf.equals("55555555555")
-                || cpf.equals("66666666666") || cpf.equals("77777777777")
-                || cpf.equals("88888888888") || cpf.equals("99999999999")) {
+        Validator validator = new Validator();
+
+        // Se o tamanho do cpf for diferente de 11 ou possuir ao 11 caracteres iguais
+        if (cpf.length() != 11 || validator.digitsAreEquals(cpf, 11)) {
             return false;
         } else {
-
-            char tenDigit, elevenDigit;
-            int sum, i, r, weight;
+            int i;
 
             ValidateCPF validateCPF = new ValidateCPF();
 
             // Cálculo do 1° dígito verificador
-            sum = 0;
-            weight = 10;
+            int sum = 0;
+            int weight = 10;
             for (i = 0; i < 9; i++) {
                 sum = validateCPF.runCalculation(sum, weight, i, cpf);
                 weight--;
             }
 
-            r = 11 - (sum % 11);
-            tenDigit = validateCPF.verifyR(r);
+            int r = 11 - (sum % 11);
+            char tenDigit = validateCPF.verifyR(r);
 
             // Cálculo do 2° dígito verificador
             sum = 0;
@@ -46,7 +49,7 @@ public class ValidateCPF {
             }
 
             r = 11 - (sum % 11);
-            elevenDigit = validateCPF.verifyR(r);
+            char elevenDigit = validateCPF.verifyR(r);
 
             // Se os dígitos calculados são iguais os dígitos pegos.
             return (tenDigit == cpf.charAt(9)) && (elevenDigit == cpf.charAt(10));
@@ -56,16 +59,15 @@ public class ValidateCPF {
     /**
      * Método para executar os cálculos do somatório
      *
-     * @param sum   - Quantidade que o somatório já esta
+     * @param sum    - Quantidade que o somatório já esta
      * @param weight - Peso da posição em que esta verificando
-     * @param index - Índice qual esta verificando
-     * @param cpf - CPF do cliente
+     * @param index  - Índice qual esta verificando
+     * @param cpf    - CPF do cliente
      * @return sum atualizado
      */
     private int runCalculation(int sum, int weight, int index, String cpf) {
         int number = cpf.charAt(index) - 48;
-        sum += number * weight;
-        return sum;
+        return sum + (number * weight);
     }
 
     /**
