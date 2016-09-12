@@ -21,6 +21,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
     @SuppressWarnings("unchecked")
     public List<String[]> retrieveAll() {
         List<String[]> clients = new ArrayList<>();
+
         try {
             em = JPAUtil.getEntityManager();
             Query query = em.createNamedQuery(Cliente.RETRIEVE_ALL);
@@ -29,6 +30,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
         } catch (Exception e) {
             LOGGER.error(e);
         }
+
         return clients;
     }
 
@@ -42,6 +44,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
     @SuppressWarnings("unchecked")
     public List<String[]> retrieveByName(String name) {
         List<String[]> clients = new ArrayList<>();
+
         try {
             em = JPAUtil.getEntityManager();
             Query query = em.createNamedQuery(Cliente.RETRIEVE_BY_NAME);
@@ -51,6 +54,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
         } catch (Exception e) {
             LOGGER.error(e);
         }
+
         return clients;
     }
 

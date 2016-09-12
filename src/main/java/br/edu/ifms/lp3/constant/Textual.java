@@ -36,5 +36,6 @@ public class Textual {
     /**
      * Construtor privado
      */
-    private Textual(){}
+    private Textual() {
+    }
 }

@@ -105,21 +105,18 @@ public class ManagerClient extends ScreenHelper{
     public Cliente createValidateClient(String name, String address, String cpf, String phone,
                                         JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {
         char sex = ' ';
-
         Validator validator = new Validator();
-
         boolean error = validator.checkAll(address, name, cpf, phone, radioButtonMale, radioButtonFemale);
 
         if (!error) {
-            if (radioButtonFemale.isSelected()) {
+            if (radioButtonFemale.isSelected())
                 sex = 'f';
-            } else if (radioButtonMale.isSelected()) {
+            else if (radioButtonMale.isSelected())
                 sex = 'm';
-            }
 
             return createClient(address, name, phone, cpf, sex);
-        } else {
+        } else
             return null;
-        }
     }
+
 }

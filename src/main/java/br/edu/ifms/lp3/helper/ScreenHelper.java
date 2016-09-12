@@ -41,7 +41,7 @@ public abstract class ScreenHelper {
     }
 
     /**
-     * Método pára exibir mensagem de erro
+     * Método para exibir mensagem de erro
      *
      * @param frame   - JFrame a qual a menagem faz parte
      * @param message - Mensagem a ser exibida
@@ -52,7 +52,7 @@ public abstract class ScreenHelper {
     }
 
     /**
-     * Método pára exibir mensagem informativa
+     * Método para exibir mensagem informativa
      *
      * @param frame   - JFrame a qual a menagem faz parte
      * @param message - Mensagem a ser exibida

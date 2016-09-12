@@ -18,14 +18,15 @@ public class Matriz {
         int size = dataFromDB.size();
         // Matriz que vai ser preenchida com dados do banco com tamanho da linha de 5 colunas
         String[][] table = new String[size][5];
+
         for (int i = 0; i < size; i++) {
-            // Pega a linha
             Object[] line = dataFromDB.get(i);
-            for (int j = 0; j < 5; j++) {
-                // Guarda partes da linha na matriz
+
+            // Guarda partes da linha na matriz
+            for (int j = 0; j < 5; j++)
                 table[i][j] = line[j].toString();
-            }
         }
+
         return table;
     }
 

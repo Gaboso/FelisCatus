@@ -17,9 +17,9 @@ public class Validator {
      */
     public boolean checkCPF(String cpf) {
         // se CPF estiver vazio
-        if ("   .   .   -  ".equals(cpf)) {
+        if ("   .   .   -  ".equals(cpf))
             return false;
-        } else {
+        else {
             ValidateCPF validateCPF = new ValidateCPF();
             String cpfNoMask = cpf.replace(".", "");
             cpfNoMask = cpfNoMask.replace("-", "");
@@ -71,16 +71,15 @@ public class Validator {
      */
     public boolean checkAddress(String address) {
         // Se endereço estiver vazio
-        if (address.isEmpty()) {
+        if (address.isEmpty())
             return false;
-        } else {
+        else {
             String addressLC = address.toLowerCase();
             String[] patterns = {"rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r."};
 
             for (String pattern : patterns) {
-                if (addressLC.startsWith(pattern + " ")) {
+                if (addressLC.startsWith(pattern + " "))
                     return true;
-                }
             }
 
             return false;
@@ -94,9 +93,9 @@ public class Validator {
      * @return Retorna true se o telefone for valido e false caso contrário
      */
     public boolean checkPhone(String phone) {
-        if (phone.length() != 14 || digitsAreEquals(phone, 10)) {
+        if (phone.length() != 14 || digitsAreEquals(phone, 10))
             return false;
-        } else {
+        else {
             Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
             Matcher matcher = pattern.matcher(phone);
             return matcher.find();
@@ -129,6 +128,7 @@ public class Validator {
     boolean checkAll(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
         boolean part1 = !checkName(name) || !checkCPF(cpf) || !checkRadioButton(male, female);
         boolean part2 = !checkAddress(address) || !checkPhone(phone);
+
         return part1 || part2;
     }
 

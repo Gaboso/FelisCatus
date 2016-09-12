@@ -13,7 +13,8 @@ public class ReflectionUtil {
     /**
      * Construtor privado
      */
-    private ReflectionUtil(){}
+    private ReflectionUtil() {
+    }
 
     /**
      * Retorna a classe genérica apontada pelo índice <code>index</code> do
@@ -37,13 +38,15 @@ public class ReflectionUtil {
      */
     private static Class<?> getGenericClass(Class<?> clazz, int index) {
         Type genType = clazz.getGenericSuperclass();
+
         if (genType instanceof ParameterizedType) {
             ParameterizedType pramType = (ParameterizedType) genType;
             Type[] params = pramType.getActualTypeArguments();
-            if ((params != null) && (params.length > index)) {
+
+            if ((params != null) && (params.length > index))
                 return (Class<?>) params[index];
-            }
         }
+
         return null;
     }
 

@@ -2,10 +2,10 @@ package br.edu.ifms.lp3.ui;
 
 import br.edu.ifms.lp3.constant.Textual;
 import br.edu.ifms.lp3.dao.ClienteDAO;
+import br.edu.ifms.lp3.helper.ScreenHelper;
 import br.edu.ifms.lp3.model.Cliente;
 import br.edu.ifms.lp3.ui.model.Matriz;
 import br.edu.ifms.lp3.ui.model.ModelTableClient;
-import br.edu.ifms.lp3.helper.ScreenHelper;
 import br.edu.ifms.lp3.util.ManagerClient;
 import br.edu.ifms.lp3.util.Validator;
 import net.miginfocom.swing.MigLayout;
@@ -371,13 +371,13 @@ public class RegisterScreen extends ScreenHelper {
      * Método para apagar o conteúdo digitado nas caixas de texto
      */
     private void clearText() {
-        // Se o texto não for vazio
+        // Se o cpf não for vazio
         if (!fieldCPF.getText().isEmpty())
             fieldCPF.setText("");
-        // Se o texto não for vazio
+        // Se o nome não for vazio
         if (!fieldName.getText().isEmpty())
             fieldName.setText("");
-        // Se o texto não for vazio
+        // Se o endereço não for vazio
         if (!fieldAddress.getText().isEmpty())
             fieldAddress.setText("");
         // Se o telefone não estiver vazio
@@ -428,12 +428,12 @@ public class RegisterScreen extends ScreenHelper {
         fieldCPF.setText(cpf);
         fieldAddress.setText(address);
         fieldPhone.setText(phone);
+
         // Se for feminino ou masculino
-        if (sex == 'f') {
+        if (sex == 'f')
             radioButtonFemale.setSelected(true);
-        } else {
+        else
             radioButtonMale.setSelected(true);
-        }
     }
 
     /**
@@ -463,11 +463,10 @@ public class RegisterScreen extends ScreenHelper {
         // Matriz a ser mostrada na tela
         String[][] data = null;
 
-        if (opcao == 1) {
+        if (opcao == 1)
             data = matriz.mountMatriz(clientDAO.retrieveByName(fieldSearch.getText()));
-        } else if (opcao == 2) {
+        else if (opcao == 2)
             data = matriz.mountMatriz(clientDAO.retrieveAll());
-        }
 
         // Modelo de tabela que será mostrada com dados e nomes de colunas
         ModelTableClient tableModel = new ModelTableClient(data);
@@ -506,7 +505,6 @@ public class RegisterScreen extends ScreenHelper {
         buttonUpdateRecord.setVisible(false);
         // Esconde o botão de remover
         removeButton.setVisible(false);
-
-
     }
+
 }

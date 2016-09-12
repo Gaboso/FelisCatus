@@ -21,9 +21,9 @@ public class ValidateCPF {
         Validator validator = new Validator();
 
         // Se o tamanho do cpf for diferente de 11 ou possuir ao 11 caracteres iguais
-        if (cpf.length() != 11 || validator.digitsAreEquals(cpf, 11)) {
+        if (cpf.length() != 11 || validator.digitsAreEquals(cpf, 11))
             return false;
-        } else {
+        else {
             int i;
 
             ValidateCPF validateCPF = new ValidateCPF();

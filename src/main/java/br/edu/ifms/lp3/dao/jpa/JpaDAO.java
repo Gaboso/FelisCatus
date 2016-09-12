@@ -39,6 +39,7 @@ public class JpaDAO<T> implements Dao<T> {
         } catch (Exception e) {
             LOGGER.error(e);
         }
+
         em.close();
         return null;
     }
@@ -62,6 +63,7 @@ public class JpaDAO<T> implements Dao<T> {
         } catch (Exception e) {
             LOGGER.error(e);
         }
+
         em.close();
         return null;
     }
@@ -86,6 +88,7 @@ public class JpaDAO<T> implements Dao<T> {
         } catch (Exception e) {
             LOGGER.error(e);
         }
+
         em.close();
         return false;
     }
@@ -111,6 +114,8 @@ public class JpaDAO<T> implements Dao<T> {
             }
             em.close();
         }
+
         return null;
     }
+
 }
