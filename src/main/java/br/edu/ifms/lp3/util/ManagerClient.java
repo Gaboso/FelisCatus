@@ -12,16 +12,6 @@ import javax.swing.*;
  */
 public class ManagerClient extends ScreenHelper{
 
-    /**
-     * Método que cria um objeto de cliente com os dados capturados na tela
-     *
-     * @param address - Endereço do cliente
-     * @param name    - Nome do cliente
-     * @param phone   - Telefone do cliente
-     * @param cpf     - CPF do cliente
-     * @param sex     - Sexo do cliente
-     * @return Retorna o objeto de cliente
-     */
     private Cliente createClient(String address, String name, String phone, String cpf, char sex) {
         Cliente client = new Cliente();
 
@@ -34,16 +24,9 @@ public class ManagerClient extends ScreenHelper{
         return client;
     }
 
-    /**
-     * Método para cadastrar os clientes
-     *
-     * @param client - Objeto do cliente
-     * @param frame  - Frame atual
-     * @return Retorna true se foi possível cadastrar e false caso contrário
-     */
     public boolean recordClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
-        // Se ocorreu tudo bem e foi cadastrado
+
         if (clientDAO.save(client) != null) {
             showInformationMessage(frame, "efetuado");
             return true;
@@ -53,16 +36,9 @@ public class ManagerClient extends ScreenHelper{
         }
     }
 
-    /**
-     * Método para atualizar um registro de cliente
-     *
-     * @param client - Objeto do cliente
-     * @param frame  - Frame atual
-     * @return Retorna true se foi possível atualizar e false caso contrário
-     */
     public boolean updateClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
-        // Se ocorreu tudo bem e foi cadastrado
+
         if (clientDAO.update(client) != null) {
             showInformationMessage(frame, "atualizado");
             return true;
@@ -72,13 +48,6 @@ public class ManagerClient extends ScreenHelper{
         }
     }
 
-    /**
-     * Método para excluir cliente
-     *
-     * @param client - Objeto do cliente
-     * @param frame  - Frame atual
-     * @return Retorna true se foi possível remover e false caso contrário
-     */
     public boolean removeClient(Cliente client, JFrame frame) {
         ClienteDAO clientDAO = new ClienteDAO();
         // Se ocorreu tudo bem e foi cadastrado
@@ -91,17 +60,6 @@ public class ManagerClient extends ScreenHelper{
         }
     }
 
-    /**
-     * Método para criar e validar um cliente
-     *
-     * @param name              - Nome do cliente
-     * @param address           - Endereço do cliente
-     * @param cpf               - CPF do cliente
-     * @param phone             - Telefone do cliente
-     * @param radioButtonFemale - Botão de radio feminino
-     * @param radioButtonMale   - Botão de radio feminino masculino
-     * @return Retorna objeto do cliente se foi possível cadastrar e null caso contrário
-     */
     public Cliente createValidateClient(String name, String address, String cpf, String phone,
                                         JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {
         char sex = ' ';

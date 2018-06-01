@@ -4,9 +4,6 @@ import br.edu.ifms.lp3.constant.Textual;
 
 import javax.swing.table.DefaultTableModel;
 
-/**
- * Modelo de tabela para utilização de tabela no Swing
- */
 public class ModelTableClient extends DefaultTableModel {
 
     private static final long serialVersionUID = 1L;

@@ -1,6 +1,6 @@
 package br.edu.ifms.lp3.dao.jpa;
 
-import br.edu.ifms.lp3.dao.Dao;
+import br.edu.ifms.lp3.dao.DAO;
 import br.edu.ifms.lp3.util.JPAUtil;
 import br.edu.ifms.lp3.util.ReflectionUtil;
 import org.apache.log4j.Logger;
@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  * @param <T> Classe a ser utilizada
  */
-public class JpaDAO<T> implements Dao<T> {
+public class JpaDAO<T> implements DAO<T> {
 
     private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
 

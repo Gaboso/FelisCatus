@@ -13,12 +13,6 @@ public class ClienteDAO extends JpaDAO<Cliente> {
 
     private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
 
-    /**
-     * Método para recuperar todos os registros do banco
-     *
-     * @return retorna lista com os resultados
-     */
-    @SuppressWarnings("unchecked")
     public List<String[]> retrieveAll() {
         List<String[]> clients = new ArrayList<>();
 
@@ -34,14 +28,6 @@ public class ClienteDAO extends JpaDAO<Cliente> {
         return clients;
     }
 
-
-    /**
-     * Método para buscar no BD por nome
-     *
-     * @param name - Nome digitado no filtro
-     * @return retorna lista com os resultados
-     */
-    @SuppressWarnings("unchecked")
     public List<String[]> retrieveByName(String name) {
         List<String[]> clients = new ArrayList<>();
 

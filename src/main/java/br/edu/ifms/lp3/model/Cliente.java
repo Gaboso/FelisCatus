@@ -2,9 +2,6 @@ package br.edu.ifms.lp3.model;
 
 import javax.persistence.*;
 
-/**
- * Classe Modelo Cliente
- */
 @Entity
 @NamedQueries(value = {
         @NamedQuery(name = Cliente.RETRIEVE_ALL, query = "SELECT nome, cpf, endereco, sexo, telefone FROM Cliente ORDER BY nome"),

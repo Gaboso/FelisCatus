@@ -1,21 +1,7 @@
 package br.edu.ifms.lp3.util;
 
-/**
- * Classe pega no DevMedia e otimizada por Gabriel Carvalho
- * <p>
- * Link Original:
- * http://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
- *
- * @author Omero Francisco Bertol Modificado por: Gabriel Carvalho
- */
 public class ValidateCPF {
 
-    /**
-     * Método para validar o CPF
-     *
-     * @param cpf - CPF a ser validado
-     * @return Retorna true se for um cpf valido ou false caso contrario
-     */
     public boolean isCPF(String cpf) {
 
         Validator validator = new Validator();
@@ -56,26 +42,11 @@ public class ValidateCPF {
         }
     }
 
-    /**
-     * Método para executar os cálculos do somatório
-     *
-     * @param sum    - Quantidade que o somatório já esta
-     * @param weight - Peso da posição em que esta verificando
-     * @param index  - Índice qual esta verificando
-     * @param cpf    - CPF do cliente
-     * @return sum atualizado
-     */
     private int runCalculation(int sum, int weight, int index, String cpf) {
         int number = cpf.charAt(index) - 48;
         return sum + (number * weight);
     }
 
-    /**
-     * Método para verificar os últimos dígitos do CPF
-     *
-     * @param r digito
-     * @return o valor equivalente as ultima posições no CPF
-     */
     private char verifyR(int r) {
         return (r == 10) || (r == 11) ? '0' : (char) (r + 48);
     }

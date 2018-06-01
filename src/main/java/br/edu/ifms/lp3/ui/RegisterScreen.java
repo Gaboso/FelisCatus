@@ -20,6 +20,8 @@ import java.text.ParseException;
 public class RegisterScreen extends ScreenHelper {
 
     private static final Logger LOGGER = Logger.getLogger(RegisterScreen.class);
+    private static final int SEARCH_BY_NAME = 1;
+    private static final int SEARCH_ALL = 2;
 
     private JFrame mainFrame;
     private JTextField fieldName;
@@ -41,12 +43,12 @@ public class RegisterScreen extends ScreenHelper {
     private JRadioButton radioButtonFemale;
     private JRadioButton radioButtonMale;
 
-    private JScrollPane scrollpane;
+    private JScrollPane scrollPane;
 
     private final ButtonGroup radioGroupSex = new ButtonGroup();
     private JTable table;
 
-    private JButton buttonUpdateRecord;
+    private JButton buttonUpdate;
     private JButton removeButton;
 
     /**
@@ -211,10 +213,10 @@ public class RegisterScreen extends ScreenHelper {
         removeButton.setVisible(false);
         registerPanel.add(removeButton, "cell 1 5,alignx center,aligny center");
 
-        buttonUpdateRecord = new JButton(Textual.ATUALIZAR);
-        buttonUpdateRecord.addActionListener(arg0 -> whenUpdateButtonIsPressed());
-        buttonUpdateRecord.setVisible(false);
-        registerPanel.add(buttonUpdateRecord, "cell 2 5,alignx right,aligny center");
+        buttonUpdate = new JButton(Textual.ATUALIZAR);
+        buttonUpdate.addActionListener(arg0 -> whenUpdateButtonIsPressed());
+        buttonUpdate.setVisible(false);
+        registerPanel.add(buttonUpdate, "cell 2 5,alignx right,aligny center");
 
         JPanel panelSearch = new JPanel();
         panelSearch.setBorder(makeBorder(Textual.BUSCAR));
@@ -228,22 +230,17 @@ public class RegisterScreen extends ScreenHelper {
         fieldSearch.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent arg0) {
-                // Passando 1 como parâmetro para buscar por nome
-                refreshTable(1);
+                refreshTable(SEARCH_BY_NAME);
             }
         });
         panelSearch.add(fieldSearch, "flowx,cell 2 0,alignx left,aligny center");
         fieldSearch.setColumns(10);
 
-        scrollpane = new JScrollPane();
-        panelSearch.add(scrollpane, "cell 0 1 3 1,grow");
-        // Passando 2 como parâmetro para buscar tudo
-        refreshTable(2);
+        scrollPane = new JScrollPane();
+        panelSearch.add(scrollPane, "cell 0 1 3 1,grow");
+        refreshTable(SEARCH_ALL);
     }
 
-    /**
-     * Método que sera acionado quando o campo telefone perder o foco
-     */
     private void whenPhoneLostFocus() {
         Validator validator = new Validator();
 
@@ -254,12 +251,9 @@ public class RegisterScreen extends ScreenHelper {
         }
     }
 
-    /**
-     * Método que sera acionado quando o campo endereço perder o foco
-     */
     private void whenAddressLostFocus() {
         Validator validator = new Validator();
-        // Se passar nas validações
+
         if (validator.checkAddress(fieldAddress.getText())) {
             setValidationStyle(labelAddress, imageAddress, GREEN, Textual.CORRETO_24);
         } else {
@@ -267,208 +261,138 @@ public class RegisterScreen extends ScreenHelper {
         }
     }
 
-    /**
-     * Método que sera acionado quando o botão cadastrar for pressionado
-     */
     private void whenSaveButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
-        // Criando e validando cliente
+
         Cliente cliente = managerClient.createValidateClient(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
-        // Se for um cliente valido
+
         if (cliente != null) {
-            // Se foi possível cadastrar o cliente, caso contrario fazer nada
+
             if (managerClient.recordClient(cliente, mainFrame)) {
-                // Apaga tudo
                 clearScreen();
-                refreshTable(2);
+                refreshTable(SEARCH_ALL);
             }
         } else {
             showMessageError(mainFrame, Textual.PREENCHA_OS_CAMPOS);
         }
     }
 
-    /**
-     * Método que sera acionado quando o botão remover for pressionado
-     */
     private void whenRemoveButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
-        // Criando e validando cliente
+
         Cliente cliente = managerClient.createValidateClient(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
-        // Se for um cliente valido
+
         if (cliente != null) {
-            // Se foi possível atualizar o registro do candidato, caso contrario não precisa fazer nada
             if (managerClient.removeClient(cliente, mainFrame)) {
                 clearScreen();
-                refreshTable(2);
+                refreshTable(SEARCH_ALL);
             }
         } else {
             showMessageError(mainFrame, Textual.PREENCHA_OS_CAMPOS);
         }
     }
 
-    /**
-     * Método que sera acionado quando o botão atualizar for pressionado
-     */
     private void whenUpdateButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
 
-        // Criando e validando cliente
         Cliente cliente = managerClient.createValidateClient(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
-        // Se for um cliente valido
+
         if (cliente != null) {
-            // Se foi possível atualizar o registro do candidato, caso contrario não precisa fazer nada
             if (managerClient.updateClient(cliente, mainFrame)) {
                 clearScreen();
-                refreshTable(2);
+                refreshTable(SEARCH_ALL);
             }
         } else {
             showMessageError(mainFrame, Textual.PREENCHA_OS_CAMPOS);
         }
     }
 
-    /**
-     * Método que recebe o textoLabel e a imagemLabel, e os formata de acordo com a cor e imagem recebidas
-     *
-     * @param textLabel  - Label onde encontra o texto informativo do campo
-     * @param imageLabel - Label que recebe imagem para indicar o status do campo
-     * @param color      - Cor que o texto deve ficar
-     * @param imageName  - Nome da imagem a ser adicionada.
-     *                   <p>
-     *                   Obs: tem que ser ".png" e estar na pasta "resources/img".
-     *                   Exemplo: imageName = icone.
-     */
     private void setValidationStyle(JLabel textLabel, JLabel imageLabel, Color color, String imageName) {
         textLabel.setForeground(color);
         imageLabel.setIcon(getImageIcon(imageName));
     }
 
-    /**
-     * Método para retirar formatação dos campos
-     */
     private void clearFormatting() {
-        // Setando cor dos labels para preto
         labelCPF.setForeground(BLACK);
         labelName.setForeground(BLACK);
         labelAddress.setForeground(BLACK);
         labelPhone.setForeground(BLACK);
-        // Setando ícones para nulo
+
         imageCPF.setIcon(null);
         imageAddress.setIcon(null);
         imageName.setIcon(null);
         imagePhone.setIcon(null);
     }
 
-    /**
-     * Método para apagar o conteúdo digitado nas caixas de texto
-     */
     private void clearText() {
-        // Se o cpf não for vazio
         if (!fieldCPF.getText().isEmpty())
             fieldCPF.setText("");
-        // Se o nome não for vazio
+
         if (!fieldName.getText().isEmpty())
             fieldName.setText("");
-        // Se o endereço não for vazio
+
         if (!fieldAddress.getText().isEmpty())
             fieldAddress.setText("");
-        // Se o telefone não estiver vazio
+
         if (!fieldPhone.getText().isEmpty())
             fieldPhone.setText("");
-        // Se o campo busca não estiver vazio
+
         if (!fieldSearch.getText().isEmpty())
             fieldSearch.setText("");
-        // Limpa os botões de radio
+
         radioGroupSex.clearSelection();
     }
 
-    /**
-     * Método que ira capturar conteúdo da linha selecionada
-     */
     private void getDataFromSelectedRow() {
-        // pegando o índice da linha que foi selecionada
         int rowNumber = table.getSelectedRow();
-        // pegando o modelo de tabela
+
         ModelTableClient tableModel = (ModelTableClient) table.getModel();
-        // pegando os dados
+
         String name = (String) tableModel.getValueAt(rowNumber, 0);
         String cpf = (String) tableModel.getValueAt(rowNumber, 1);
         String address = (String) tableModel.getValueAt(rowNumber, 2);
         String sexString = (String) tableModel.getValueAt(rowNumber, 3);
         String phone = (String) tableModel.getValueAt(rowNumber, 4);
 
-        // Convertendo para char
         char sex = sexString.charAt(0);
-        // Chamando o método que vai setar tudo os dados pegos e por na tela
+
         setDataOnFields(name, cpf, address, sex, phone);
     }
 
-    /**
-     * Método que recebe tudo que foi pego do banco, mas passaram
-     * por um tratamento e seleção e seta estes dados na tela de forma que fique
-     * visível para o usuário
-     *
-     * @param name    -  Nome do usuário
-     * @param cpf     - CPF do usuário
-     * @param address - Endereço do usuário
-     * @param sex     - Sexo do usuário
-     * @param phone   - Telefone do usuário
-     */
     private void setDataOnFields(String name, String cpf, String address, char sex, String phone) {
-        // Setando os campos da tela
         fieldName.setText(name);
         fieldCPF.setText(cpf);
         fieldAddress.setText(address);
         fieldPhone.setText(phone);
 
-        // Se for feminino ou masculino
-        if (sex == 'f')
+        if (sex == 'f') {
             radioButtonFemale.setSelected(true);
-        else
+        } else {
             radioButtonMale.setSelected(true);
+        }
     }
 
-    /**
-     * Método para a criação de tabela e preenchimento da mesma com os dados do
-     * banco
-     *
-     * @param opcao - Se vai buscar por nome ou buscar tudo do banco
-     *              <p>
-     *              <table border="1">
-     *              <th>opcao 1</th>
-     *              <th>opcao 2</th>
-     *              <tr>
-     *              <td>opção 1, é para buscar conteúdo da tabela<br>
-     *              por um determinado nome ou pedaço do<br>
-     *              mesmo, no banco de dados</td>
-     *              <td>opção 2, é para buscar conteúdo da tabela<br>
-     *              por completo e trazer tudo o que encontrar no banco<br>
-     *              do banco de dados</td>
-     *              </tr>
-     *              </table>
-     */
-    private void refreshTable(int opcao) {
-        // Objeto do cliente DAO
+    private void refreshTable(int selectedOption) {
         ClienteDAO clientDAO = new ClienteDAO();
 
         Matriz matriz = new Matriz();
-        // Matriz a ser mostrada na tela
         String[][] data = null;
 
-        if (opcao == 1)
+        if (selectedOption == SEARCH_BY_NAME) {
             data = matriz.mountMatriz(clientDAO.retrieveByName(fieldSearch.getText()));
-        else if (opcao == 2)
+        } else if (selectedOption == SEARCH_ALL) {
             data = matriz.mountMatriz(clientDAO.retrieveAll());
+        }
 
-        // Modelo de tabela que será mostrada com dados e nomes de colunas
         ModelTableClient tableModel = new ModelTableClient(data);
 
         table = new JTable(tableModel);
@@ -476,34 +400,21 @@ public class RegisterScreen extends ScreenHelper {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Dois cliques seguidos
                 if (e.getClickCount() == 2) {
-                    // Limpa a formatação
                     clearScreen();
-                    // Pega os dados referente a linha selecionada
                     getDataFromSelectedRow();
-                    // Deixa o botão de atualizar visível
-                    buttonUpdateRecord.setVisible(true);
-                    // Deixa o botão de remover visível
+                    buttonUpdate.setVisible(true);
                     removeButton.setVisible(true);
                 }
             }
         });
-        scrollpane.setViewportView(table);
+        scrollPane.setViewportView(table);
     }
 
-    /**
-     * Método concentrador de outros métodos que realizam ações como: apagar
-     * tudo que for texto, formatação e esconder botões especiais da tela
-     */
     private void clearScreen() {
-        // Apaga o texto
         clearText();
-        // Tira as cores e imagens
         clearFormatting();
-        // Esconde o botão de atualizar
-        buttonUpdateRecord.setVisible(false);
-        // Esconde o botão de remover
+        buttonUpdate.setVisible(false);
         removeButton.setVisible(false);
     }
 
