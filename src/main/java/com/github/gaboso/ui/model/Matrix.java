@@ -2,12 +2,12 @@ package com.github.gaboso.ui.model;
 
 import java.util.List;
 
-/**
- * Classe que vai modelar os dados do banco e colocar em uma Matriz
- */
-public class Matriz {
+public class Matrix {
 
-    public String[][] mountMatriz(List<String[]> dataFromDB) {
+    private Matrix() {
+    }
+
+    public static String[][] create(List<String[]> dataFromDB) {
         int size = dataFromDB.size();
 
         String[][] table = new String[size][5];

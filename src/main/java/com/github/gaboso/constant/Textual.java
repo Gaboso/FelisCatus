@@ -18,7 +18,7 @@ public class Textual {
     public static final String REMOVE = "Remove";
     public static final String UPDATE = "Update";
     public static final String SEARCH = "Search";
-    public static final String VERSION = "2.0.0-SNAPSHOT";
+    public static final String VERSION = "2.0.0";
     public static final String TITLE = "FelisCatus - " + VERSION;
     public static final String PREENCHA_OS_CAMPOS = "Preencha todos os campos corretamente";
     public static final String CPF_JA_CADASTRADO = "CPF já cadastrado";

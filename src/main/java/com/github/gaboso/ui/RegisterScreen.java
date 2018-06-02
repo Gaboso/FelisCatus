@@ -4,7 +4,7 @@ import com.github.gaboso.constant.Textual;
 import com.github.gaboso.dao.UserDAO;
 import com.github.gaboso.helper.ScreenHelper;
 import com.github.gaboso.model.User;
-import com.github.gaboso.ui.model.Matriz;
+import com.github.gaboso.ui.model.Matrix;
 import com.github.gaboso.ui.model.ModelTableUser;
 import com.github.gaboso.util.ManagerClient;
 import com.github.gaboso.util.Validator;
@@ -373,13 +373,12 @@ public class RegisterScreen extends ScreenHelper {
     private void refreshTable(int selectedOption) {
         UserDAO userDAO = new UserDAO();
 
-        Matriz matriz = new Matriz();
         String[][] data = null;
 
         if (selectedOption == SEARCH_BY_NAME) {
-            data = matriz.mountMatriz(userDAO.findByName(fieldSearch.getText()));
+            data = Matrix.create(userDAO.findByName(fieldSearch.getText()));
         } else if (selectedOption == SEARCH_ALL) {
-            data = matriz.mountMatriz(userDAO.findAll());
+            data = Matrix.create(userDAO.findAll());
         }
 
         ModelTableUser tableModel = new ModelTableUser(data);

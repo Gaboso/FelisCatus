@@ -1,8 +1,6 @@
 # Felis Catus
 
------
-
-CRUD simples utilizando Java Swing, JPA e PostgreSQL.
+Simple User's CRUD using Java Swing and PostgreSQL as DB.
 
 ## How to build
 
@@ -10,11 +8,9 @@ Run the __`build.bat`__ file for _Windows_ or __`build.sh`__ for _Linux_, both a
 
 > After execution, the file __`felis-catus.jar`__ will be generated in the directory `target`
 
-## Objetivo
+## Goal
 
------
-
-Criar uma interface visual para cadastro, consulta, alteração e exclusão de dados de clientes
+Create an example project with a visual interface for registering, querying, changing, and deleting user data
 
 ### Screenshot
 
