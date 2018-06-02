@@ -1,4 +1,4 @@
-package br.edu.ifms.lp3.dao;
+package com.github.gaboso.dao;
 
 import java.io.Serializable;
 

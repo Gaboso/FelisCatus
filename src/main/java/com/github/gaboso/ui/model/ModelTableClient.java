@@ -1,6 +1,6 @@
-package br.edu.ifms.lp3.ui.model;
+package com.github.gaboso.ui.model;
 
-import br.edu.ifms.lp3.constant.Textual;
+import com.github.gaboso.constant.Textual;
 
 import javax.swing.table.DefaultTableModel;
 

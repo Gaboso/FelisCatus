@@ -1,8 +1,8 @@
-package br.edu.ifms.lp3.dao;
+package com.github.gaboso.dao;
 
-import br.edu.ifms.lp3.dao.jpa.JpaDAO;
-import br.edu.ifms.lp3.model.Cliente;
-import br.edu.ifms.lp3.util.JPAUtil;
+import com.github.gaboso.dao.jpa.JpaDAO;
+import com.github.gaboso.model.Cliente;
+import com.github.gaboso.util.JPAUtil;
 import org.apache.log4j.Logger;
 
 import javax.persistence.Query;

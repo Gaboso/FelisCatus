@@ -1,4 +1,4 @@
-package br.edu.ifms.lp3.util;
+package com.github.gaboso.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

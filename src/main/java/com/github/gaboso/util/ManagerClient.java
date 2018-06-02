@@ -1,9 +1,9 @@
-package br.edu.ifms.lp3.util;
+package com.github.gaboso.util;
 
-import br.edu.ifms.lp3.constant.Textual;
-import br.edu.ifms.lp3.dao.ClienteDAO;
-import br.edu.ifms.lp3.model.Cliente;
-import br.edu.ifms.lp3.helper.ScreenHelper;
+import com.github.gaboso.constant.Textual;
+import com.github.gaboso.dao.ClienteDAO;
+import com.github.gaboso.model.Cliente;
+import com.github.gaboso.helper.ScreenHelper;
 
 import javax.swing.*;
 

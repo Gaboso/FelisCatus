@@ -1,13 +1,13 @@
-package br.edu.ifms.lp3.ui;
+package com.github.gaboso.ui;
 
-import br.edu.ifms.lp3.constant.Textual;
-import br.edu.ifms.lp3.dao.ClienteDAO;
-import br.edu.ifms.lp3.helper.ScreenHelper;
-import br.edu.ifms.lp3.model.Cliente;
-import br.edu.ifms.lp3.ui.model.Matriz;
-import br.edu.ifms.lp3.ui.model.ModelTableClient;
-import br.edu.ifms.lp3.util.ManagerClient;
-import br.edu.ifms.lp3.util.Validator;
+import com.github.gaboso.constant.Textual;
+import com.github.gaboso.dao.ClienteDAO;
+import com.github.gaboso.helper.ScreenHelper;
+import com.github.gaboso.model.Cliente;
+import com.github.gaboso.ui.model.Matriz;
+import com.github.gaboso.ui.model.ModelTableClient;
+import com.github.gaboso.util.ManagerClient;
+import com.github.gaboso.util.Validator;
 import net.miginfocom.swing.MigLayout;
 import org.apache.log4j.Logger;
 

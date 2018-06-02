@@ -1,4 +1,4 @@
-package br.edu.ifms.lp3.model;
+package com.github.gaboso.model;
 
 import javax.persistence.*;
 

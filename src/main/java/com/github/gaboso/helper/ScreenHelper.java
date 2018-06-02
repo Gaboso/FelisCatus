@@ -1,6 +1,6 @@
-package br.edu.ifms.lp3.helper;
+package com.github.gaboso.helper;
 
-import br.edu.ifms.lp3.constant.Textual;
+import com.github.gaboso.constant.Textual;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

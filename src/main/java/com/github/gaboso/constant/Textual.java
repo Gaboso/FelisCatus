@@ -1,4 +1,4 @@
-package br.edu.ifms.lp3.constant;
+package com.github.gaboso.constant;
 
 /**
  * Classe com o conteúdo textual utilizado na aplicação

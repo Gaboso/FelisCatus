@@ -1,4 +1,4 @@
-package br.edu.ifms.lp3.ui.model;
+package com.github.gaboso.ui.model;
 
 import java.util.List;
 

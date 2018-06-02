@@ -1,8 +1,8 @@
-package br.edu.ifms.lp3.dao.jpa;
+package com.github.gaboso.dao.jpa;
 
-import br.edu.ifms.lp3.dao.DAO;
-import br.edu.ifms.lp3.util.JPAUtil;
-import br.edu.ifms.lp3.util.ReflectionUtil;
+import com.github.gaboso.dao.DAO;
+import com.github.gaboso.util.JPAUtil;
+import com.github.gaboso.util.ReflectionUtil;
 import org.apache.log4j.Logger;
 
 import javax.persistence.EntityManager;
