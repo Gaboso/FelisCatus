@@ -17,7 +17,8 @@ public class Textual {
     public static final String REMOVER = "Remover";
     public static final String ATUALIZAR = "Atualizar";
     public static final String BUSCAR = "Buscar";
-    public static final String TITLE = "Cadastro de cliente - 1.0";
+    public static final String VERSION = "2.0.0-SNAPSHOT";
+    public static final String TITLE = "Cadastro de cliente - " + VERSION;
     public static final String PREENCHA_OS_CAMPOS = "Preencha todos os campos corretamente";
     public static final String CPF_JA_CADASTRADO = "CPF já cadastrado";
     public static final String IMPOSSIVEL_ATUALIZAR = "Não foi possível atualizar";
