@@ -6,7 +6,10 @@ import java.util.regex.Pattern;
 
 public class Validator {
 
-    public boolean checkCPF(String cpf) {
+    private Validator() {
+    }
+
+    public static boolean cpf(String cpf) {
         if ("   .   .   -  ".equals(cpf))
             return false;
         else {
@@ -18,7 +21,44 @@ public class Validator {
         }
     }
 
-    boolean digitsAreEquals(String text, int minimumOccurrences) {
+    public static boolean name(String name) {
+        return !name.isEmpty() && name.trim().length() < 70;
+    }
+
+    public static boolean address(String address) {
+        if (address.isEmpty()) {
+            return false;
+        } else {
+            String addressLC = address.toLowerCase();
+            String[] patterns = {"rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r."};
+
+            for (String pattern : patterns) {
+                if (addressLC.startsWith(pattern + " "))
+                    return true;
+            }
+
+            return false;
+        }
+    }
+
+    public static boolean phone(String phone) {
+        if (phone.length() != 14 || digitsAreEquals(phone, 10))
+            return false;
+        else {
+            Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
+            Matcher matcher = pattern.matcher(phone);
+            return matcher.find();
+        }
+    }
+
+    public static boolean all(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
+        boolean part1 = !name(name) || !cpf(cpf) || !radioButtonIsSelected(male, female);
+        boolean part2 = !address(address) || !phone(phone);
+
+        return part1 || part2;
+    }
+
+    public static boolean digitsAreEquals(String text, int minimumOccurrences) {
         for (int i = 0; i < text.length(); i++) {
             int occurrences = 0;
 
@@ -35,45 +75,8 @@ public class Validator {
         return false;
     }
 
-    public boolean checkName(String name) {
-        return !name.isEmpty() && name.trim().length() < 70;
-    }
-
-    public boolean checkAddress(String address) {
-        if (address.isEmpty()) {
-            return false;
-        } else {
-            String addressLC = address.toLowerCase();
-            String[] patterns = {"rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r."};
-
-            for (String pattern : patterns) {
-                if (addressLC.startsWith(pattern + " "))
-                    return true;
-            }
-
-            return false;
-        }
-    }
-
-    public boolean checkPhone(String phone) {
-        if (phone.length() != 14 || digitsAreEquals(phone, 10))
-            return false;
-        else {
-            Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
-            Matcher matcher = pattern.matcher(phone);
-            return matcher.find();
-        }
-    }
-
-    private boolean checkRadioButton(JRadioButton male, JRadioButton female) {
+    private static boolean radioButtonIsSelected(JRadioButton male, JRadioButton female) {
         return female.isSelected() || male.isSelected();
-    }
-
-    boolean checkAll(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
-        boolean part1 = !checkName(name) || !checkCPF(cpf) || !checkRadioButton(male, female);
-        boolean part2 = !checkAddress(address) || !checkPhone(phone);
-
-        return part1 || part2;
     }
 
 }

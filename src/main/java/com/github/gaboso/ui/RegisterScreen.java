@@ -14,7 +14,12 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 
 public class RegisterScreen extends ScreenHelper {
@@ -102,12 +107,11 @@ public class RegisterScreen extends ScreenHelper {
         fieldName.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent arg0) {
-                Validator validator = new Validator();
-                // Se tiver algum texto
-                if (validator.checkName(fieldName.getText()))
-                    setValidationStyle(labelName, imageName, GREEN, Textual.CORRETO_24);
-                else
-                    setValidationStyle(labelName, imageName, RED, Textual.INCORRETO_24);
+                if (Validator.name(fieldName.getText())) {
+                    setValidationSuccess(labelName, imageName);
+                } else {
+                    setValidationError(labelName, imageName);
+                }
             }
         });
         registerPanel.add(fieldName, "cell 1 0 2 1,growx,aligny center");
@@ -134,12 +138,10 @@ public class RegisterScreen extends ScreenHelper {
         fieldCPF.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent arg0) {
-                Validator validator = new Validator();
-                // Se for um CPF válido
-                if (validator.checkCPF(fieldCPF.getText())) {
-                    setValidationStyle(labelCPF, imageCPF, GREEN, Textual.CORRETO_24);
+                if (Validator.cpf(fieldCPF.getText())) {
+                    setValidationSuccess(labelCPF, imageCPF);
                 } else {
-                    setValidationStyle(labelCPF, imageCPF, RED, Textual.INCORRETO_24);
+                    setValidationError(labelCPF, imageCPF);
                 }
             }
         });
@@ -242,78 +244,82 @@ public class RegisterScreen extends ScreenHelper {
     }
 
     private void whenPhoneLostFocus() {
-        Validator validator = new Validator();
-
-        if (validator.checkPhone(fieldPhone.getText())) {
-            setValidationStyle(labelPhone, imagePhone, GREEN, Textual.CORRETO_24);
+        if (Validator.phone(fieldPhone.getText())) {
+            setValidationSuccess(labelPhone, imagePhone);
         } else {
-            setValidationStyle(labelPhone, imagePhone, RED, Textual.INCORRETO_24);
+            setValidationError(labelPhone, imagePhone);
         }
     }
 
     private void whenAddressLostFocus() {
-        Validator validator = new Validator();
-
-        if (validator.checkAddress(fieldAddress.getText())) {
-            setValidationStyle(labelAddress, imageAddress, GREEN, Textual.CORRETO_24);
+        if (Validator.address(fieldAddress.getText())) {
+            setValidationSuccess(labelAddress, imageAddress);
         } else {
-            setValidationStyle(labelAddress, imageAddress, RED, Textual.INCORRETO_24);
+            setValidationError(labelAddress, imageAddress);
         }
     }
 
     private void whenSaveButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
 
-        Cliente cliente = managerClient.createValidateClient(
+        Cliente cliente = managerClient.createValidator(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
 
         if (cliente != null) {
 
-            if (managerClient.recordClient(cliente, mainFrame)) {
+            if (managerClient.save(cliente, mainFrame)) {
                 clearScreen();
                 refreshTable(SEARCH_ALL);
             }
         } else {
-            showMessageError(mainFrame, Textual.PREENCHA_OS_CAMPOS);
+            showErrorMessage(mainFrame, Textual.PREENCHA_OS_CAMPOS);
         }
     }
 
     private void whenRemoveButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
 
-        Cliente cliente = managerClient.createValidateClient(
+        Cliente cliente = managerClient.createValidator(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
 
         if (cliente != null) {
-            if (managerClient.removeClient(cliente, mainFrame)) {
+            if (managerClient.remove(cliente, mainFrame)) {
                 clearScreen();
                 refreshTable(SEARCH_ALL);
             }
         } else {
-            showMessageError(mainFrame, Textual.PREENCHA_OS_CAMPOS);
+            showErrorMessage(mainFrame, Textual.PREENCHA_OS_CAMPOS);
         }
     }
 
     private void whenUpdateButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
 
-        Cliente cliente = managerClient.createValidateClient(
+        Cliente cliente = managerClient.createValidator(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
 
         if (cliente != null) {
-            if (managerClient.updateClient(cliente, mainFrame)) {
+            if (managerClient.update(cliente, mainFrame)) {
                 clearScreen();
                 refreshTable(SEARCH_ALL);
             }
         } else {
-            showMessageError(mainFrame, Textual.PREENCHA_OS_CAMPOS);
+            showErrorMessage(mainFrame, Textual.PREENCHA_OS_CAMPOS);
         }
+    }
+
+    private void setValidationError(JLabel textLabel, JLabel imageLabel) {
+        setValidationStyle(textLabel, imageLabel, RED, Textual.INCORRETO_24);
+    }
+
+    private void setValidationSuccess(JLabel textLabel, JLabel imageLabel) {
+        setValidationStyle(textLabel, imageLabel, GREEN, Textual.CORRETO_24);
     }
 
     private void setValidationStyle(JLabel textLabel, JLabel imageLabel, Color color, String imageName) {
@@ -388,9 +394,9 @@ public class RegisterScreen extends ScreenHelper {
         String[][] data = null;
 
         if (selectedOption == SEARCH_BY_NAME) {
-            data = matriz.mountMatriz(clientDAO.retrieveByName(fieldSearch.getText()));
+            data = matriz.mountMatriz(clientDAO.findByName(fieldSearch.getText()));
         } else if (selectedOption == SEARCH_ALL) {
-            data = matriz.mountMatriz(clientDAO.retrieveAll());
+            data = matriz.mountMatriz(clientDAO.findAll());
         }
 
         ModelTableClient tableModel = new ModelTableClient(data);

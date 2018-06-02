@@ -1,15 +1,19 @@
 package com.github.gaboso.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries(value = {
-        @NamedQuery(name = Cliente.RETRIEVE_ALL, query = "SELECT nome, cpf, endereco, sexo, telefone FROM Cliente ORDER BY nome"),
-        @NamedQuery(name = Cliente.RETRIEVE_BY_NAME, query = "SELECT nome, cpf, endereco, sexo, telefone FROM Cliente WHERE LOWER(nome) LIKE LOWER(:nameInFilter) ORDER BY nome")})
+        @NamedQuery(name = Cliente.FIND_ALL, query = "SELECT nome, cpf, endereco, sexo, telefone FROM Cliente ORDER BY nome"),
+        @NamedQuery(name = Cliente.FIND_BY_NAME, query = "SELECT nome, cpf, endereco, sexo, telefone FROM Cliente WHERE LOWER(nome) LIKE LOWER(:nameInFilter) ORDER BY nome")})
 public class Cliente {
 
-    public static final String RETRIEVE_ALL = "retrieveAll";
-    public static final String RETRIEVE_BY_NAME = "retrieveByName";
+    public static final String FIND_ALL = "findAll";
+    public static final String FIND_BY_NAME = "findByName";
 
     @Id
     @Column(length = 14, nullable = false)
@@ -26,6 +30,17 @@ public class Cliente {
 
     @Column
     private char sexo;
+
+    public Cliente() {
+    }
+
+    public Cliente(String cpf, String nome, String telefone, String endereco, char sexo) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.sexo = sexo;
+    }
 
     public String getCpf() {
         return cpf;

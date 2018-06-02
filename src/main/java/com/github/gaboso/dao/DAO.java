@@ -11,4 +11,5 @@ public interface DAO<T> {
     boolean remove(T object);
 
     T retrieve(Serializable id);
+
 }

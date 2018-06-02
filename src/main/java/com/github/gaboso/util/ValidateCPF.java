@@ -4,10 +4,8 @@ public class ValidateCPF {
 
     public boolean isCPF(String cpf) {
 
-        Validator validator = new Validator();
-
         // Se o tamanho do cpf for diferente de 11 ou possuir ao 11 caracteres iguais
-        if (cpf.length() != 11 || validator.digitsAreEquals(cpf, 11))
+        if (cpf.length() != 11 || Validator.digitsAreEquals(cpf, 11))
             return false;
         else {
             int i;

@@ -25,12 +25,12 @@ public abstract class ScreenHelper {
         return new ImageIcon(ScreenHelper.class.getResource("/img/" + imageName + ".png"));
     }
 
-    protected void showMessageError(JFrame frame, String message) {
+    protected void showErrorMessage(JFrame frame, String message) {
         JOptionPane.showMessageDialog(frame, message, Textual.ERRO, JOptionPane.ERROR_MESSAGE,
                 getImageIcon(Textual.INCORRETO_48));
     }
 
-    protected void showInformationMessage(JFrame frame, String message) {
+    protected void showInfoMessage(JFrame frame, String message) {
         JOptionPane.showMessageDialog(frame, "Cadastro " + message + " com sucesso!!!", capitalize(message), JOptionPane.INFORMATION_MESSAGE,
                 getImageIcon(Textual.INFORMATIVO_48));
     }

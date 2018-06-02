@@ -13,12 +13,12 @@ public class ClienteDAO extends JpaDAO<Cliente> {
 
     private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
 
-    public List<String[]> retrieveAll() {
+    public List<String[]> findAll() {
         List<String[]> clients = new ArrayList<>();
 
         try {
             em = JPAUtil.getEntityManager();
-            Query query = em.createNamedQuery(Cliente.RETRIEVE_ALL);
+            Query query = em.createNamedQuery(Cliente.FIND_ALL);
             clients = query.getResultList();
             em.close();
         } catch (Exception e) {
@@ -28,12 +28,12 @@ public class ClienteDAO extends JpaDAO<Cliente> {
         return clients;
     }
 
-    public List<String[]> retrieveByName(String name) {
+    public List<String[]> findByName(String name) {
         List<String[]> clients = new ArrayList<>();
 
         try {
             em = JPAUtil.getEntityManager();
-            Query query = em.createNamedQuery(Cliente.RETRIEVE_BY_NAME);
+            Query query = em.createNamedQuery(Cliente.FIND_BY_NAME);
             query.setParameter("nameInFilter", "%" + name + "%");
             clients = query.getResultList();
             em.close();
