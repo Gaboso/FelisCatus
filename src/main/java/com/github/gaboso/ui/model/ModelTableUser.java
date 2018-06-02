@@ -4,18 +4,18 @@ import com.github.gaboso.constant.Textual;
 
 import javax.swing.table.DefaultTableModel;
 
-public class ModelTableClient extends DefaultTableModel {
+public class ModelTableUser extends DefaultTableModel {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String[] COLUMN_NAME = {Textual.NOME, Textual.CPF,
-            Textual.ENDERECO, Textual.SEXO, Textual.TELEFONE};
+    private static final String[] COLUMN_NAMES = {Textual.NAME, Textual.CPF,
+            Textual.ADDRESS, Textual.SEX, Textual.PHONE};
 
-    public ModelTableClient(String[][] data) {
-        super(data, COLUMN_NAME);
+    public ModelTableUser(String[][] data) {
+        super(data, COLUMN_NAMES);
     }
 
-    public ModelTableClient() {
+    public ModelTableUser() {
         super();
     }
 

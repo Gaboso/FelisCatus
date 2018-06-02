@@ -1,7 +1,7 @@
 package com.github.gaboso.dao;
 
 import com.github.gaboso.dao.jpa.JpaDAO;
-import com.github.gaboso.model.Cliente;
+import com.github.gaboso.model.User;
 import com.github.gaboso.util.JPAUtil;
 import org.apache.log4j.Logger;
 
@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAO extends JpaDAO<Cliente> {
+public class UserDAO extends JpaDAO<User> {
 
     private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
 
@@ -18,7 +18,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
 
         try {
             em = JPAUtil.getEntityManager();
-            Query query = em.createNamedQuery(Cliente.FIND_ALL);
+            Query query = em.createNamedQuery(User.FIND_ALL);
             clients = query.getResultList();
             em.close();
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class ClienteDAO extends JpaDAO<Cliente> {
 
         try {
             em = JPAUtil.getEntityManager();
-            Query query = em.createNamedQuery(Cliente.FIND_BY_NAME);
+            Query query = em.createNamedQuery(User.FIND_BY_NAME);
             query.setParameter("nameInFilter", "%" + name + "%");
             clients = query.getResultList();
             em.close();

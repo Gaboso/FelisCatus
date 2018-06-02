@@ -26,7 +26,7 @@ public abstract class ScreenHelper {
     }
 
     protected void showErrorMessage(JFrame frame, String message) {
-        JOptionPane.showMessageDialog(frame, message, Textual.ERRO, JOptionPane.ERROR_MESSAGE,
+        JOptionPane.showMessageDialog(frame, message, Textual.ERROR, JOptionPane.ERROR_MESSAGE,
                 getImageIcon(Textual.INCORRETO_48));
     }
 

@@ -1,11 +1,11 @@
 package com.github.gaboso.ui;
 
 import com.github.gaboso.constant.Textual;
-import com.github.gaboso.dao.ClienteDAO;
+import com.github.gaboso.dao.UserDAO;
 import com.github.gaboso.helper.ScreenHelper;
-import com.github.gaboso.model.Cliente;
+import com.github.gaboso.model.User;
 import com.github.gaboso.ui.model.Matriz;
-import com.github.gaboso.ui.model.ModelTableClient;
+import com.github.gaboso.ui.model.ModelTableUser;
 import com.github.gaboso.util.ManagerClient;
 import com.github.gaboso.util.Validator;
 import net.miginfocom.swing.MigLayout;
@@ -63,15 +63,12 @@ public class RegisterScreen extends ScreenHelper {
         initialize();
     }
 
-
     /**
      * Launch the application.
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
                 RegisterScreen window = new RegisterScreen();
                 window.mainFrame.setVisible(true);
             } catch (Exception e) {
@@ -95,23 +92,20 @@ public class RegisterScreen extends ScreenHelper {
         mainFrame.setIconImage(getImageIcon("icone").getImage());
 
         JPanel registerPanel = new JPanel();
-        registerPanel.setBorder(makeBorder(Textual.CADASTRAR));
+        registerPanel.setBorder(makeBorder(Textual.FORM));
         mainFrame.getContentPane().add(registerPanel, "cell 0 1,grow");
         registerPanel.setLayout(new MigLayout("", "[54px,grow][109px,grow][109px,grow][30.00]",
                 "[20px,grow][20px,grow][20px,grow][24px,grow][24px,grow][23px,grow]"));
 
-        labelName = new JLabel(Textual.NOME);
+        labelName = new JLabel(Textual.NAME);
         registerPanel.add(labelName, "cell 0 0,growx,aligny center");
 
         fieldName = new JTextField();
         fieldName.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent arg0) {
-                if (Validator.name(fieldName.getText())) {
-                    setValidationSuccess(labelName, imageName);
-                } else {
-                    setValidationError(labelName, imageName);
-                }
+                boolean nameIsValid = Validator.name(fieldName.getText());
+                validateField(nameIsValid, labelName, imageName);
             }
         });
         registerPanel.add(fieldName, "cell 1 0 2 1,growx,aligny center");
@@ -138,18 +132,15 @@ public class RegisterScreen extends ScreenHelper {
         fieldCPF.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent arg0) {
-                if (Validator.cpf(fieldCPF.getText())) {
-                    setValidationSuccess(labelCPF, imageCPF);
-                } else {
-                    setValidationError(labelCPF, imageCPF);
-                }
+                boolean cpfIsValid = Validator.cpf(fieldCPF.getText());
+                validateField(cpfIsValid, labelCPF, imageCPF);
             }
         });
         fieldCPF.setHorizontalAlignment(SwingConstants.CENTER);
         fieldCPF.setColumns(10);
         registerPanel.add(fieldCPF, "cell 1 1 2 1,alignx left,aligny center");
 
-        labelPhone = new JLabel(Textual.TELEFONE);
+        labelPhone = new JLabel(Textual.PHONE);
         registerPanel.add(labelPhone, "cell 0 2,growx,aligny center");
 
         MaskFormatter phoneMask = null;
@@ -164,7 +155,8 @@ public class RegisterScreen extends ScreenHelper {
         fieldPhone.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent arg0) {
-                whenPhoneLostFocus();
+                boolean phoneIsValid = Validator.phone(fieldPhone.getText());
+                validateField(phoneIsValid, labelPhone, imagePhone);
             }
         });
         fieldPhone.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,8 +166,8 @@ public class RegisterScreen extends ScreenHelper {
         imagePhone = new JLabel();
         registerPanel.add(imagePhone, "cell 3 2,alignx center,aligny center");
 
-        JLabel textoSexo = new JLabel(Textual.SEXO);
-        registerPanel.add(textoSexo, "cell 0 3,growx,aligny center");
+        JLabel labelSex = new JLabel(Textual.SEX);
+        registerPanel.add(labelSex, "cell 0 3,growx,aligny center");
 
         radioButtonFemale = new JRadioButton("F");
         radioGroupSex.add(radioButtonFemale);
@@ -185,15 +177,15 @@ public class RegisterScreen extends ScreenHelper {
         radioGroupSex.add(radioButtonMale);
         registerPanel.add(radioButtonMale, "cell 1 3,alignx center,aligny center");
 
-        labelAddress = new JLabel(Textual.ENDERECO);
+        labelAddress = new JLabel(Textual.ADDRESS);
         registerPanel.add(labelAddress, "cell 0 4,growx,aligny center");
 
         fieldAddress = new JTextField();
         fieldAddress.addFocusListener(new FocusAdapter() {
-            // Quando perder o foco
             @Override
             public void focusLost(FocusEvent arg0) {
-                whenAddressLostFocus();
+                boolean addressIsValid = Validator.address(fieldAddress.getText());
+                validateField(addressIsValid, labelAddress, imageAddress);
             }
         });
         fieldAddress.setColumns(10);
@@ -202,30 +194,30 @@ public class RegisterScreen extends ScreenHelper {
         imageAddress = new JLabel();
         registerPanel.add(imageAddress, "cell 3 4,alignx center,aligny center");
 
-        JButton saveButton = new JButton(Textual.CADASTRAR);
+        JButton saveButton = new JButton(Textual.CONFIRM);
         saveButton.addActionListener(arg0 -> whenSaveButtonIsPressed());
         registerPanel.add(saveButton, "flowx,cell 0 5,alignx left,aligny center");
 
-        JButton clearButton = new JButton(Textual.LIMPAR);
+        JButton clearButton = new JButton(Textual.CLEAR);
         clearButton.addActionListener(arg0 -> clearScreen());
         registerPanel.add(clearButton, "flowx,cell 1 5,alignx center,aligny center");
 
-        removeButton = new JButton(Textual.REMOVER);
+        removeButton = new JButton(Textual.REMOVE);
         removeButton.addActionListener(arg0 -> whenRemoveButtonIsPressed());
         removeButton.setVisible(false);
         registerPanel.add(removeButton, "cell 1 5,alignx center,aligny center");
 
-        buttonUpdate = new JButton(Textual.ATUALIZAR);
+        buttonUpdate = new JButton(Textual.UPDATE);
         buttonUpdate.addActionListener(arg0 -> whenUpdateButtonIsPressed());
         buttonUpdate.setVisible(false);
         registerPanel.add(buttonUpdate, "cell 2 5,alignx right,aligny center");
 
         JPanel panelSearch = new JPanel();
-        panelSearch.setBorder(makeBorder(Textual.BUSCAR));
+        panelSearch.setBorder(makeBorder(Textual.SEARCH));
         mainFrame.getContentPane().add(panelSearch, "cell 1 1,grow");
         panelSearch.setLayout(new MigLayout("", "[46px,grow][35px][359px,grow]", "[20px][266px,grow]"));
 
-        JLabel labelSearch = new JLabel(Textual.BUSCAR);
+        JLabel labelSearch = new JLabel(Textual.SEARCH);
         panelSearch.add(labelSearch, "cell 0 0,alignx left,aligny center");
 
         fieldSearch = new JTextField();
@@ -243,33 +235,16 @@ public class RegisterScreen extends ScreenHelper {
         refreshTable(SEARCH_ALL);
     }
 
-    private void whenPhoneLostFocus() {
-        if (Validator.phone(fieldPhone.getText())) {
-            setValidationSuccess(labelPhone, imagePhone);
-        } else {
-            setValidationError(labelPhone, imagePhone);
-        }
-    }
-
-    private void whenAddressLostFocus() {
-        if (Validator.address(fieldAddress.getText())) {
-            setValidationSuccess(labelAddress, imageAddress);
-        } else {
-            setValidationError(labelAddress, imageAddress);
-        }
-    }
-
     private void whenSaveButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
 
-        Cliente cliente = managerClient.createValidator(
+        User user = managerClient.newValidUser(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
 
-        if (cliente != null) {
-
-            if (managerClient.save(cliente, mainFrame)) {
+        if (user != null) {
+            if (managerClient.save(user, mainFrame)) {
                 clearScreen();
                 refreshTable(SEARCH_ALL);
             }
@@ -281,13 +256,13 @@ public class RegisterScreen extends ScreenHelper {
     private void whenRemoveButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
 
-        Cliente cliente = managerClient.createValidator(
+        User user = managerClient.newValidUser(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
 
-        if (cliente != null) {
-            if (managerClient.remove(cliente, mainFrame)) {
+        if (user != null) {
+            if (managerClient.remove(user, mainFrame)) {
                 clearScreen();
                 refreshTable(SEARCH_ALL);
             }
@@ -299,18 +274,26 @@ public class RegisterScreen extends ScreenHelper {
     private void whenUpdateButtonIsPressed() {
         ManagerClient managerClient = new ManagerClient();
 
-        Cliente cliente = managerClient.createValidator(
+        User user = managerClient.newValidUser(
                 fieldName.getText(), fieldAddress.getText(),
                 fieldCPF.getText(), fieldPhone.getText(),
                 radioButtonFemale, radioButtonMale);
 
-        if (cliente != null) {
-            if (managerClient.update(cliente, mainFrame)) {
+        if (user != null) {
+            if (managerClient.update(user, mainFrame)) {
                 clearScreen();
                 refreshTable(SEARCH_ALL);
             }
         } else {
             showErrorMessage(mainFrame, Textual.PREENCHA_OS_CAMPOS);
+        }
+    }
+
+    private void validateField(boolean result, JLabel label, JLabel image) {
+        if (result) {
+            setValidationSuccess(label, image);
+        } else {
+            setValidationError(label, image);
         }
     }
 
@@ -361,7 +344,7 @@ public class RegisterScreen extends ScreenHelper {
     private void getDataFromSelectedRow() {
         int rowNumber = table.getSelectedRow();
 
-        ModelTableClient tableModel = (ModelTableClient) table.getModel();
+        ModelTableUser tableModel = (ModelTableUser) table.getModel();
 
         String name = (String) tableModel.getValueAt(rowNumber, 0);
         String cpf = (String) tableModel.getValueAt(rowNumber, 1);
@@ -388,18 +371,18 @@ public class RegisterScreen extends ScreenHelper {
     }
 
     private void refreshTable(int selectedOption) {
-        ClienteDAO clientDAO = new ClienteDAO();
+        UserDAO userDAO = new UserDAO();
 
         Matriz matriz = new Matriz();
         String[][] data = null;
 
         if (selectedOption == SEARCH_BY_NAME) {
-            data = matriz.mountMatriz(clientDAO.findByName(fieldSearch.getText()));
+            data = matriz.mountMatriz(userDAO.findByName(fieldSearch.getText()));
         } else if (selectedOption == SEARCH_ALL) {
-            data = matriz.mountMatriz(clientDAO.findAll());
+            data = matriz.mountMatriz(userDAO.findAll());
         }
 
-        ModelTableClient tableModel = new ModelTableClient(data);
+        ModelTableUser tableModel = new ModelTableUser(data);
 
         table = new JTable(tableModel);
 

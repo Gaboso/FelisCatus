@@ -1,55 +1,47 @@
 package com.github.gaboso.util;
 
 import com.github.gaboso.constant.Textual;
-import com.github.gaboso.dao.ClienteDAO;
+import com.github.gaboso.dao.UserDAO;
 import com.github.gaboso.helper.ScreenHelper;
-import com.github.gaboso.model.Cliente;
+import com.github.gaboso.model.User;
 
 import javax.swing.*;
 
-/**
- * Classe com métodos auxiliares ao uso da classe Client
- */
 public class ManagerClient extends ScreenHelper {
 
-    public boolean save(Cliente client, JFrame frame) {
-        ClienteDAO clientDAO = new ClienteDAO();
+    public boolean save(User user, JFrame frame) {
+        UserDAO userDAO = new UserDAO();
+        boolean isSaved = userDAO.save(user) != null;
 
-        if (clientDAO.save(client) != null) {
-            showInfoMessage(frame, "efetuado");
+        return base(frame, isSaved, "efetuado", Textual.CPF_JA_CADASTRADO);
+    }
+
+    public boolean update(User user, JFrame frame) {
+        UserDAO userDAO = new UserDAO();
+        boolean isUpdated = userDAO.update(user) != null;
+
+        return base(frame, isUpdated, "atualizado", Textual.IMPOSSIVEL_ATUALIZAR);
+    }
+
+    public boolean remove(User user, JFrame frame) {
+        UserDAO userDAO = new UserDAO();
+        boolean isRemoved = userDAO.remove(user);
+
+        return base(frame, isRemoved, "removido", Textual.IMPOSSIVEL_REMOVER);
+    }
+
+    private boolean base(JFrame frame, boolean result, String sucessMessage, String errorMessage) {
+        if (result) {
+            showInfoMessage(frame, sucessMessage);
             return true;
         } else {
-            showErrorMessage(frame, Textual.CPF_JA_CADASTRADO);
+            showErrorMessage(frame, errorMessage);
             return false;
         }
     }
 
-    public boolean update(Cliente client, JFrame frame) {
-        ClienteDAO clientDAO = new ClienteDAO();
-
-        if (clientDAO.update(client) != null) {
-            showInfoMessage(frame, "atualizado");
-            return true;
-        } else {
-            showErrorMessage(frame, Textual.IMPOSSIVEL_ATUALIZAR);
-            return false;
-        }
-    }
-
-    public boolean remove(Cliente client, JFrame frame) {
-        ClienteDAO clientDAO = new ClienteDAO();
-        // Se ocorreu tudo bem e foi cadastrado
-        if (clientDAO.remove(client)) {
-            showInfoMessage(frame, "removido");
-            return true;
-        } else {
-            showErrorMessage(frame, Textual.IMPOSSIVEL_REMOVER);
-            return false;
-        }
-    }
-
-    public Cliente createValidator(String name, String address, String cpf, String phone,
-                                   JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {
+    public User newValidUser(String name, String address, String cpf, String phone,
+                             JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {
         char sex = ' ';
 
         boolean error = Validator.all(address, name, cpf, phone, radioButtonMale, radioButtonFemale);
@@ -60,7 +52,7 @@ public class ManagerClient extends ScreenHelper {
             else if (radioButtonMale.isSelected())
                 sex = 'm';
 
-            return new Cliente(cpf, name, phone, address, sex);
+            return new User(cpf, name, phone, address, sex);
         } else {
             return null;
         }

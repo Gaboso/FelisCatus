@@ -6,19 +6,20 @@ package com.github.gaboso.constant;
 public class Textual {
 
     // Textos
-    public static final String CADASTRAR = "Cadastrar";
-    public static final String ERRO = "Erro";
-    public static final String SEXO = "Sexo";
-    public static final String NOME = "Nome";
+    public static final String CONFIRM = "Confirm";
+    public static final String FORM = "Form";
+    public static final String ERROR = "Error";
+    public static final String SEX = "Sex";
+    public static final String NAME = "Name";
     public static final String CPF = "CPF";
-    public static final String ENDERECO = "Endereço";
-    public static final String TELEFONE = "Telefone";
-    public static final String LIMPAR = "Limpar";
-    public static final String REMOVER = "Remover";
-    public static final String ATUALIZAR = "Atualizar";
-    public static final String BUSCAR = "Buscar";
+    public static final String ADDRESS = "Address";
+    public static final String PHONE = "Phone";
+    public static final String CLEAR = "Clear";
+    public static final String REMOVE = "Remove";
+    public static final String UPDATE = "Update";
+    public static final String SEARCH = "Search";
     public static final String VERSION = "2.0.0-SNAPSHOT";
-    public static final String TITLE = "Cadastro de cliente - " + VERSION;
+    public static final String TITLE = "FelisCatus - " + VERSION;
     public static final String PREENCHA_OS_CAMPOS = "Preencha todos os campos corretamente";
     public static final String CPF_JA_CADASTRADO = "CPF já cadastrado";
     public static final String IMPOSSIVEL_ATUALIZAR = "Não foi possível atualizar";
