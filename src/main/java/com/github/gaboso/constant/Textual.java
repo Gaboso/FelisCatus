@@ -1,11 +1,10 @@
 package com.github.gaboso.constant;
 
-/**
- * Classe com o conteúdo textual utilizado na aplicação
- */
 public class Textual {
 
-    // Textos
+    private static final String VERSION = "2.0.0";
+    public static final String TITLE = "FelisCatus - " + VERSION;
+
     public static final String CONFIRM = "Confirm";
     public static final String FORM = "Form";
     public static final String ERROR = "Error";
@@ -18,26 +17,22 @@ public class Textual {
     public static final String REMOVE = "Remove";
     public static final String UPDATE = "Update";
     public static final String SEARCH = "Search";
-    public static final String VERSION = "2.0.0";
-    public static final String TITLE = "FelisCatus - " + VERSION;
-    public static final String PREENCHA_OS_CAMPOS = "Preencha todos os campos corretamente";
-    public static final String CPF_JA_CADASTRADO = "CPF já cadastrado";
-    public static final String IMPOSSIVEL_ATUALIZAR = "Não foi possível atualizar";
-    public static final String IMPOSSIVEL_REMOVER = "Não foi possível remover";
+    public static final String FILL_FIELDS = "Complete all the fields correctly";
+    public static final String CPF_JA_CADASTRADO = "CPF has already been registered";
+    public static final String IMPOSSIVEL_ATUALIZAR = "Could't update user";
+    public static final String IMPOSSIVEL_REMOVER = "Could't delete user";
 
-    // Nome das imagens
+    // icon names
     public static final String CORRETO_24 = "correto_24";
     public static final String INCORRETO_24 = "incorreto_24";
     public static final String INFORMATIVO_48 = "informativo_48";
     public static final String INCORRETO_48 = "incorreto_48";
 
-    // Mascaras
+    // masks
     public static final String CPF_MASK = "###.###.###-##";
     public static final String PHONE_MASK = "(##) ####-####";
 
-    /**
-     * Construtor privado
-     */
     private Textual() {
     }
+
 }

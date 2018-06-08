@@ -249,7 +249,7 @@ public class RegisterScreen extends ScreenHelper {
                 refreshTable(SEARCH_ALL);
             }
         } else {
-            showErrorMessage(mainFrame, Textual.PREENCHA_OS_CAMPOS);
+            showErrorMessage(mainFrame, Textual.FILL_FIELDS);
         }
     }
 
@@ -267,7 +267,7 @@ public class RegisterScreen extends ScreenHelper {
                 refreshTable(SEARCH_ALL);
             }
         } else {
-            showErrorMessage(mainFrame, Textual.PREENCHA_OS_CAMPOS);
+            showErrorMessage(mainFrame, Textual.FILL_FIELDS);
         }
     }
 
@@ -285,7 +285,7 @@ public class RegisterScreen extends ScreenHelper {
                 refreshTable(SEARCH_ALL);
             }
         } else {
-            showErrorMessage(mainFrame, Textual.PREENCHA_OS_CAMPOS);
+            showErrorMessage(mainFrame, Textual.FILL_FIELDS);
         }
     }
 
