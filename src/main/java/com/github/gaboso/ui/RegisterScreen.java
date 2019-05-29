@@ -323,20 +323,25 @@ public class RegisterScreen extends ScreenHelper {
     }
 
     private void clearText() {
-        if (!fieldCPF.getText().isEmpty())
+        if (!fieldCPF.getText().isEmpty()) {
             fieldCPF.setText("");
+        }
 
-        if (!fieldName.getText().isEmpty())
+        if (!fieldName.getText().isEmpty()) {
             fieldName.setText("");
+        }
 
-        if (!fieldAddress.getText().isEmpty())
+        if (!fieldAddress.getText().isEmpty()) {
             fieldAddress.setText("");
+        }
 
-        if (!fieldPhone.getText().isEmpty())
+        if (!fieldPhone.getText().isEmpty()) {
             fieldPhone.setText("");
+        }
 
-        if (!fieldSearch.getText().isEmpty())
+        if (!fieldSearch.getText().isEmpty()) {
             fieldSearch.setText("");
+        }
 
         radioGroupSex.clearSelection();
     }

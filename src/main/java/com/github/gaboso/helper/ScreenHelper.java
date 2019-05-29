@@ -9,11 +9,10 @@ import java.awt.*;
 
 public abstract class ScreenHelper {
 
-    // Cores
     private static final Color GREY = new Color(192, 192, 192);
     protected static final Color BLACK = new Color(51, 51, 51);
-    public static final Color RED = new Color(244, 67, 54);
-    public static final Color GREEN = new Color(67, 160, 71);
+    protected static final Color RED = new Color(244, 67, 54);
+    protected static final Color GREEN = new Color(67, 160, 71);
 
     private static LineBorder lineBorder = new LineBorder(GREY, 1, true);
 

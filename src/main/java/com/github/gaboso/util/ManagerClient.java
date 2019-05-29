@@ -53,9 +53,9 @@ public class ManagerClient extends ScreenHelper {
                 sex = 'm';
 
             return new User(cpf, name, phone, address, sex);
-        } else {
-            return null;
         }
+
+        return null;
     }
 
 }

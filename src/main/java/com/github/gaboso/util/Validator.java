@@ -10,9 +10,9 @@ public class Validator {
     }
 
     public static boolean cpf(String cpf) {
-        if ("   .   .   -  ".equals(cpf))
+        if ("   .   .   -  ".equals(cpf)) {
             return false;
-        else {
+        } else {
             ValidateCPF validateCPF = new ValidateCPF();
             String cpfNoMask = cpf.replace(".", "");
             cpfNoMask = cpfNoMask.replace("-", "");
@@ -42,9 +42,9 @@ public class Validator {
     }
 
     public static boolean phone(String phone) {
-        if (phone.length() != 14 || digitsAreEquals(phone, 10))
+        if (phone.length() != 14 || digitsAreEquals(phone, 10)) {
             return false;
-        else {
+        } else {
             Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
             Matcher matcher = pattern.matcher(phone);
             return matcher.find();
