@@ -6,10 +6,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModelTableUser extends DefaultTableModel {
 
-    private static final long serialVersionUID = 1L;
-
-    private static final String[] COLUMN_NAMES = {Textual.NAME, Textual.CPF,
-            Textual.ADDRESS, Textual.SEX, Textual.PHONE};
+    private static final String[] COLUMN_NAMES = {
+            Textual.NAME,
+            Textual.CPF,
+            Textual.ADDRESS,
+            Textual.SEX,
+            Textual.PHONE
+    };
 
     public ModelTableUser(String[][] data) {
         super(data, COLUMN_NAMES);

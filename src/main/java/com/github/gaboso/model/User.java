@@ -21,13 +21,13 @@ public class User {
     @Column(length = 14, nullable = false)
     private String cpf;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 150, nullable = false)
     private String name;
 
-    @Column(length = 14)
+    @Column(length = 16)
     private String phone;
 
-    @Column(length = 100)
+    @Column(length = 150)
     private String address;
 
     @Column

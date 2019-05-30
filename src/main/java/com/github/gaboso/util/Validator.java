@@ -45,7 +45,7 @@ public class Validator {
         if (phone.length() != 14 || digitsAreEquals(phone, 10)) {
             return false;
         } else {
-            Pattern pattern = Pattern.compile("\\(\\d{2,2}\\) \\d{4,4}-\\d{4,4}");
+            Pattern pattern = Pattern.compile("\\(\\d{2}\\) \\d{4}-\\d{4}");
             Matcher matcher = pattern.matcher(phone);
             return matcher.find();
         }
