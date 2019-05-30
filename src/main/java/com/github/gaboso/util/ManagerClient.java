@@ -47,10 +47,11 @@ public class ManagerClient extends ScreenHelper {
         boolean error = Validator.all(address, name, cpf, phone, radioButtonMale, radioButtonFemale);
 
         if (!error) {
-            if (radioButtonFemale.isSelected())
+            if (radioButtonFemale.isSelected()) {
                 sex = 'f';
-            else if (radioButtonMale.isSelected())
+            } else if (radioButtonMale.isSelected()) {
                 sex = 'm';
+            }
 
             return new User(cpf, name, phone, address, sex);
         }

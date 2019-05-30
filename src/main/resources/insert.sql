@@ -1,3 +1,13 @@
+CREATE SCHEMA IF NOT EXISTS felis;
+CREATE TABLE IF NOT EXISTS felis.tb_user
+(
+    cpf     varchar(14)  NOT NULL,
+    address varchar(150),
+    name    varchar(150) NOT NULL,
+    phone   varchar(16),
+    sex     char(1)
+);
+
 insert into felis.tb_user values('178.530.939-00','Rua Manoel de Souza Domingues 1217','James','(11) 4961-4858','m');
 insert into felis.tb_user values('659.545.947-75','Rua Vicente de Paula Sacco 918','Emelia','(15) 6274-9134','f');
 insert into felis.tb_user values('952.189.428-80','Rua João Antônio Prado 317','Jeanne','(11) 3935-2809','f');
