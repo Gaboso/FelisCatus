@@ -6,7 +6,7 @@
 
     <groupId>com.github.gaboso</groupId>
     <artifactId>felis-catus</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
     <description>Simple CRUD in Java with PostgreSQL</description>
 
     <organization>
@@ -34,9 +34,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <postgresql.version>42.2.5</postgresql.version>
-        <database.url>jdbc:postgresql://localhost:5432/users</database.url>
-        <database.user>postgres</database.user>
-        <databese.password>postgres</databese.password>
         <flyway.version>5.2.4</flyway.version>
     </properties>
 
@@ -120,12 +117,7 @@
                 <version>${flyway.version}</version>
                 <configuration>
                     <sqlMigrationSeparator>__</sqlMigrationSeparator>
-                    <locations>
-                        <location>filesystem:src/main/resources/db/</location>
-                    </locations>
-                    <url>${database.url}</url>
-                    <user>${database.user}</user>
-                    <password>${databese.password}</password>
+                    <configFile>src/main/resources/db/config/flyway.properties</configFile>
                 </configuration>
             </plugin>
         </plugins>

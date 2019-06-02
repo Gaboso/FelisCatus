@@ -20,14 +20,14 @@ public class ManagerClient extends ScreenHelper {
         UserDAO userDAO = new UserDAO();
         boolean isUpdated = userDAO.update(user) != null;
 
-        return base(frame, isUpdated, "atualizado", Textual.IMPOSSIVEL_ATUALIZAR);
+        return base(frame, isUpdated, "atualizado", Textual.COULD_T_UPDATE_USER);
     }
 
     public boolean remove(User user, JFrame frame) {
         UserDAO userDAO = new UserDAO();
         boolean isRemoved = userDAO.remove(user);
 
-        return base(frame, isRemoved, "removido", Textual.IMPOSSIVEL_REMOVER);
+        return base(frame, isRemoved, "removido", Textual.COULD_T_DELETE_USER);
     }
 
     private boolean base(JFrame frame, boolean result, String sucessMessage, String errorMessage) {

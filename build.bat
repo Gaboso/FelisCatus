@@ -1,4 +1,4 @@
 @echo off
 echo --- Building FelisCatus ---
 
-mvn clean install
+mvn clean install flyway:migrate
