@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-mvn clean install
+mvn clean install flyway:migrate

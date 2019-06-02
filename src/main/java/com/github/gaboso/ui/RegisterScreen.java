@@ -70,6 +70,7 @@ public class RegisterScreen extends ScreenHelper {
         EventQueue.invokeLater(() -> {
             try {
                 RegisterScreen window = new RegisterScreen();
+                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                 window.mainFrame.setVisible(true);
             } catch (Exception e) {
                 LOGGER.error(e);

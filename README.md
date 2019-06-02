@@ -8,6 +8,18 @@ Run the __`build.bat`__ file for _Windows_ or __`build.sh`__ for _Linux_, both a
 
 > After execution, the file __`felis-catus.jar`__ will be generated in the directory `target`
 
+### Basic structure in DB
+
+To create tables and schemas in the DB, run following command:
+
+```bash
+mvn compile flyway:migrate
+```
+
+To populate the database run the following file `src/main/resources/db/migration/insert.sql`
+
+----
+
 ## Goal
 
 Create an example project with a visual interface for registering, querying, changing, and deleting user data
@@ -16,4 +28,4 @@ Create an example project with a visual interface for registering, querying, cha
 
 ----
 
-![notebook](img/screenshot.png)
+![screenshot](img/screenshot.png)

@@ -2,7 +2,7 @@ package com.github.gaboso.constant;
 
 public class Textual {
 
-    private static final String VERSION = "2.0.0";
+    private static final String VERSION = "2.1.2";
     public static final String TITLE = "FelisCatus - " + VERSION;
 
     public static final String CONFIRM = "Confirm";
@@ -19,8 +19,8 @@ public class Textual {
     public static final String SEARCH = "Search";
     public static final String FILL_FIELDS = "Complete all the fields correctly";
     public static final String CPF_JA_CADASTRADO = "CPF has already been registered";
-    public static final String IMPOSSIVEL_ATUALIZAR = "Could't update user";
-    public static final String IMPOSSIVEL_REMOVER = "Could't delete user";
+    public static final String COULD_T_UPDATE_USER = "Could't update user";
+    public static final String COULD_T_DELETE_USER = "Could't delete user";
 
     // icon names
     public static final String CORRETO_24 = "correto_24";
