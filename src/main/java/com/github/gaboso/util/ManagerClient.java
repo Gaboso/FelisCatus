@@ -13,21 +13,21 @@ public class ManagerClient extends ScreenHelper {
         UserDAO userDAO = new UserDAO();
         boolean isSaved = userDAO.save(user) != null;
 
-        return base(frame, isSaved, "efetuado", Textual.CPF_JA_CADASTRADO);
+        return base(frame, isSaved, "Registration successfully complete", Textual.CPF_ALREADY_EXISTS);
     }
 
     public boolean update(User user, JFrame frame) {
         UserDAO userDAO = new UserDAO();
         boolean isUpdated = userDAO.update(user) != null;
 
-        return base(frame, isUpdated, "atualizado", Textual.COULD_T_UPDATE_USER);
+        return base(frame, isUpdated, "Registration updated successfully", Textual.UPDATE_USER_ERROR);
     }
 
     public boolean remove(User user, JFrame frame) {
         UserDAO userDAO = new UserDAO();
         boolean isRemoved = userDAO.remove(user);
 
-        return base(frame, isRemoved, "removido", Textual.COULD_T_DELETE_USER);
+        return base(frame, isRemoved, "Registration removed successfully", Textual.DELETE_USER_ERROR);
     }
 
     private boolean base(JFrame frame, boolean result, String sucessMessage, String errorMessage) {

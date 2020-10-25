@@ -92,7 +92,7 @@ public class RegisterScreen extends ScreenHelper {
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.getContentPane().setLayout(
             new MigLayout("", "[390px,grow][451px,grow]", "[28.00,fill][316px,grow][21.00]"));
-        mainFrame.setIconImage(getImageIcon("icone").getImage());
+        mainFrame.setIconImage(getImageIcon("app_icon").getImage());
 
         JPanel registerPanel = new JPanel();
         registerPanel.setBorder(makeBorder(Textual.FORM));
@@ -301,11 +301,11 @@ public class RegisterScreen extends ScreenHelper {
     }
 
     private void setValidationError(JLabel textLabel, JLabel imageLabel) {
-        setValidationStyle(textLabel, imageLabel, RED, Textual.INCORRETO_24);
+        setValidationStyle(textLabel, imageLabel, RED, Textual.NOT_OK_24);
     }
 
     private void setValidationSuccess(JLabel textLabel, JLabel imageLabel) {
-        setValidationStyle(textLabel, imageLabel, GREEN, Textual.CORRETO_24);
+        setValidationStyle(textLabel, imageLabel, GREEN, Textual.OK_24);
     }
 
     private void setValidationStyle(JLabel textLabel, JLabel imageLabel, Color color, String imageName) {

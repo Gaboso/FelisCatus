@@ -26,12 +26,12 @@ public abstract class ScreenHelper {
 
     protected void showErrorMessage(JFrame frame, String message) {
         JOptionPane.showMessageDialog(frame, message, Textual.ERROR, JOptionPane.ERROR_MESSAGE,
-            getImageIcon(Textual.INCORRETO_48));
+            getImageIcon(Textual.NOT_OK_48));
     }
 
     protected void showInfoMessage(JFrame frame, String message) {
-        JOptionPane.showMessageDialog(frame, "Cadastro " + message + " com sucesso!!!", capitalize(message), JOptionPane.INFORMATION_MESSAGE,
-            getImageIcon(Textual.INFORMATIVO_48));
+        JOptionPane.showMessageDialog(frame, message, capitalize(message), JOptionPane.INFORMATION_MESSAGE,
+            getImageIcon(Textual.INFO_48));
     }
 
     private String capitalize(String word) {

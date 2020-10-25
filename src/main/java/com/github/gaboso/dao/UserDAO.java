@@ -14,6 +14,7 @@ public class UserDAO extends JpaDAO<User> {
 
     private static final Logger LOGGER = LogManager.getLogger(UserDAO.class);
 
+    @SuppressWarnings("unchecked")
     public List<String[]> findAll() {
         List<String[]> clients = new ArrayList<>();
 
@@ -29,6 +30,7 @@ public class UserDAO extends JpaDAO<User> {
         return clients;
     }
 
+    @SuppressWarnings("unchecked")
     public List<String[]> findByName(String name) {
         List<String[]> clients = new ArrayList<>();
 
