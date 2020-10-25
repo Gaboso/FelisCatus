@@ -9,7 +9,8 @@ import com.github.gaboso.ui.model.ModelTableUser;
 import com.github.gaboso.util.ManagerClient;
 import com.github.gaboso.util.Validator;
 import net.miginfocom.swing.MigLayout;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
@@ -24,7 +25,8 @@ import java.text.ParseException;
 
 public class RegisterScreen extends ScreenHelper {
 
-    private static final Logger LOGGER = Logger.getLogger(RegisterScreen.class);
+    private static final Logger LOGGER = LogManager.getLogger(RegisterScreen.class);
+
     private static final int SEARCH_BY_NAME = 1;
     private static final int SEARCH_ALL = 2;
 
@@ -89,14 +91,14 @@ public class RegisterScreen extends ScreenHelper {
         mainFrame.setBounds(100, 100, 891, 408);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.getContentPane().setLayout(
-                new MigLayout("", "[390px,grow][451px,grow]", "[28.00,fill][316px,grow][21.00]"));
+            new MigLayout("", "[390px,grow][451px,grow]", "[28.00,fill][316px,grow][21.00]"));
         mainFrame.setIconImage(getImageIcon("icone").getImage());
 
         JPanel registerPanel = new JPanel();
         registerPanel.setBorder(makeBorder(Textual.FORM));
         mainFrame.getContentPane().add(registerPanel, "cell 0 1,grow");
         registerPanel.setLayout(new MigLayout("", "[54px,grow][109px,grow][109px,grow][30.00]",
-                "[20px,grow][20px,grow][20px,grow][24px,grow][24px,grow][23px,grow]"));
+            "[20px,grow][20px,grow][20px,grow][24px,grow][24px,grow][23px,grow]"));
 
         labelName = new JLabel(Textual.NAME);
         registerPanel.add(labelName, "cell 0 0,growx,aligny center");
@@ -240,9 +242,9 @@ public class RegisterScreen extends ScreenHelper {
         ManagerClient managerClient = new ManagerClient();
 
         User user = managerClient.newValidUser(
-                fieldName.getText(), fieldAddress.getText(),
-                fieldCPF.getText(), fieldPhone.getText(),
-                radioButtonFemale, radioButtonMale);
+            fieldName.getText(), fieldAddress.getText(),
+            fieldCPF.getText(), fieldPhone.getText(),
+            radioButtonFemale, radioButtonMale);
 
         if (user != null) {
             if (managerClient.save(user, mainFrame)) {
@@ -258,9 +260,9 @@ public class RegisterScreen extends ScreenHelper {
         ManagerClient managerClient = new ManagerClient();
 
         User user = managerClient.newValidUser(
-                fieldName.getText(), fieldAddress.getText(),
-                fieldCPF.getText(), fieldPhone.getText(),
-                radioButtonFemale, radioButtonMale);
+            fieldName.getText(), fieldAddress.getText(),
+            fieldCPF.getText(), fieldPhone.getText(),
+            radioButtonFemale, radioButtonMale);
 
         if (user != null) {
             if (managerClient.remove(user, mainFrame)) {
@@ -276,9 +278,9 @@ public class RegisterScreen extends ScreenHelper {
         ManagerClient managerClient = new ManagerClient();
 
         User user = managerClient.newValidUser(
-                fieldName.getText(), fieldAddress.getText(),
-                fieldCPF.getText(), fieldPhone.getText(),
-                radioButtonFemale, radioButtonMale);
+            fieldName.getText(), fieldAddress.getText(),
+            fieldCPF.getText(), fieldPhone.getText(),
+            radioButtonFemale, radioButtonMale);
 
         if (user != null) {
             if (managerClient.update(user, mainFrame)) {

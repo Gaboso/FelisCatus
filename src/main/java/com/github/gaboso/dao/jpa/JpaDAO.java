@@ -3,7 +3,8 @@ package com.github.gaboso.dao.jpa;
 import com.github.gaboso.dao.DAO;
 import com.github.gaboso.util.JPAUtil;
 import com.github.gaboso.util.ReflectionUtil;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 
 public class JpaDAO<T> implements DAO<T> {
 
-    private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(JpaDAO.class);
 
     protected EntityManager em;
 

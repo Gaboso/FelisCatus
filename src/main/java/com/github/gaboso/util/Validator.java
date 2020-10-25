@@ -26,9 +26,7 @@ public class Validator {
     }
 
     public static boolean address(String address) {
-        if (address.isEmpty()) {
-            return false;
-        } else {
+        if (!address.isEmpty()) {
             String addressLC = address.toLowerCase();
             String[] patterns = {"rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r."};
 
@@ -37,8 +35,8 @@ public class Validator {
                     return true;
             }
 
-            return false;
         }
+        return false;
     }
 
     public static boolean phone(String phone) {

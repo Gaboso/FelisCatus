@@ -14,10 +14,10 @@ public abstract class ScreenHelper {
     protected static final Color RED = new Color(244, 67, 54);
     protected static final Color GREEN = new Color(67, 160, 71);
 
-    private static LineBorder lineBorder = new LineBorder(GREY, 1, true);
+    private static final LineBorder LINE_BORDER = new LineBorder(GREY, 1, true);
 
     protected static TitledBorder makeBorder(String title) {
-        return new TitledBorder(lineBorder, title, TitledBorder.LEADING, TitledBorder.TOP, null, BLACK);
+        return new TitledBorder(LINE_BORDER, title, TitledBorder.LEADING, TitledBorder.TOP, null, BLACK);
     }
 
     protected static ImageIcon getImageIcon(String imageName) {
@@ -26,12 +26,12 @@ public abstract class ScreenHelper {
 
     protected void showErrorMessage(JFrame frame, String message) {
         JOptionPane.showMessageDialog(frame, message, Textual.ERROR, JOptionPane.ERROR_MESSAGE,
-                getImageIcon(Textual.INCORRETO_48));
+            getImageIcon(Textual.INCORRETO_48));
     }
 
     protected void showInfoMessage(JFrame frame, String message) {
         JOptionPane.showMessageDialog(frame, "Cadastro " + message + " com sucesso!!!", capitalize(message), JOptionPane.INFORMATION_MESSAGE,
-                getImageIcon(Textual.INFORMATIVO_48));
+            getImageIcon(Textual.INFORMATIVO_48));
     }
 
     private String capitalize(String word) {

@@ -9,8 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries(value = {
-        @NamedQuery(name = User.FIND_ALL, query = "SELECT name, cpf, address, sex, phone FROM User ORDER BY name"),
-        @NamedQuery(name = User.FIND_BY_NAME, query = "SELECT name, cpf, address, sex, phone FROM User WHERE LOWER(name) LIKE LOWER(:nameInFilter) ORDER BY name")})
+    @NamedQuery(name = User.FIND_ALL, query = "SELECT name, cpf, address, sex, phone FROM User ORDER BY name"),
+    @NamedQuery(name = User.FIND_BY_NAME, query = "SELECT name, cpf, address, sex, phone FROM User WHERE LOWER(name) LIKE LOWER(:nameInFilter) ORDER BY name")})
 @Table(name = "TB_USER", schema = "felis")
 public class User {
 

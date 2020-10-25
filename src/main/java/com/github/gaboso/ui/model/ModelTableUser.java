@@ -7,11 +7,11 @@ import javax.swing.table.DefaultTableModel;
 public class ModelTableUser extends DefaultTableModel {
 
     private static final String[] COLUMN_NAMES = {
-            Textual.NAME,
-            Textual.CPF,
-            Textual.ADDRESS,
-            Textual.SEX,
-            Textual.PHONE
+        Textual.NAME,
+        Textual.CPF,
+        Textual.ADDRESS,
+        Textual.SEX,
+        Textual.PHONE
     };
 
     public ModelTableUser(String[][] data) {

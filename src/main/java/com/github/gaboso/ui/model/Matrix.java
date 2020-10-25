@@ -12,11 +12,11 @@ public class Matrix {
 
         String[][] table = new String[size][5];
 
-        for (int i = 0; i < size; i++) {
-            Object[] line = dataFromDB.get(i);
+        for (int line = 0; line < size; line++) {
+            Object[] lineData = dataFromDB.get(line);
 
-            for (int j = 0; j < 5; j++) {
-                table[i][j] = line[j].toString();
+            for (int column = 0; column < 5; column++) {
+                table[line][column] = lineData[column].toString();
             }
         }
 

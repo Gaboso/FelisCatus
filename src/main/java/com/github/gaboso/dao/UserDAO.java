@@ -3,7 +3,8 @@ package com.github.gaboso.dao;
 import com.github.gaboso.dao.jpa.JpaDAO;
 import com.github.gaboso.model.User;
 import com.github.gaboso.util.JPAUtil;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.Query;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class UserDAO extends JpaDAO<User> {
 
-    private static final Logger LOGGER = Logger.getLogger(JpaDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(UserDAO.class);
 
     public List<String[]> findAll() {
         List<String[]> clients = new ArrayList<>();
