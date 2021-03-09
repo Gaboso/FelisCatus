@@ -2,7 +2,7 @@ package com.github.gaboso.constant;
 
 public class Textual {
 
-    private static final String VERSION = "2.1.4";
+    private static final String VERSION = "2.2.0";
     public static final String TITLE = "FelisCatus - " + VERSION;
 
     public static final String CONFIRM = "Confirm";
@@ -27,7 +27,6 @@ public class Textual {
     public static final String NOT_OK_24 = "not_ok_24";
     public static final String NOT_OK_48 = "not_ok_48";
     public static final String INFO_48 = "info_48";
-
 
     // masks
     public static final String CPF_MASK = "###.###.###-##";

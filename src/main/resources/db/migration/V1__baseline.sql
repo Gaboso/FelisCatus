@@ -7,6 +7,9 @@ CREATE TABLE IF NOT EXISTS felis.tb_user
     address varchar(150),
     name    varchar(150) NOT NULL,
     phone   varchar(16),
-    sex     char(1)
+    sex     char(1),
+
+    CONSTRAINT pk_user PRIMARY KEY (cpf)
 );
-ALTER TABLE felis.tb_user OWNER TO postgres;
+ALTER TABLE felis.tb_user
+    OWNER TO postgres;

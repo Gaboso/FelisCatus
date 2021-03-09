@@ -19,8 +19,9 @@ public class ReflectionUtil {
             ParameterizedType pramType = (ParameterizedType) genType;
             Type[] params = pramType.getActualTypeArguments();
 
-            if ((params != null) && (params.length > index))
+            if ((params != null) && (params.length > index)) {
                 return (Class<?>) params[index];
+            }
         }
 
         return null;

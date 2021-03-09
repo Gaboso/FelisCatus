@@ -1,5 +1,9 @@
 package com.github.gaboso.ui;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
 import com.github.gaboso.constant.Textual;
 import com.github.gaboso.dao.UserDAO;
 import com.github.gaboso.helper.ScreenHelper;
@@ -71,8 +75,8 @@ public class RegisterScreen extends ScreenHelper {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
+                FlatNordIJTheme.install();
                 RegisterScreen window = new RegisterScreen();
-                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                 window.mainFrame.setVisible(true);
             } catch (Exception e) {
                 LOGGER.error(e);
@@ -220,7 +224,7 @@ public class RegisterScreen extends ScreenHelper {
         mainFrame.getContentPane().add(panelSearch, "cell 1 1,grow");
         panelSearch.setLayout(new MigLayout("", "[46px,grow][35px][359px,grow]", "[20px][266px,grow]"));
 
-        JLabel labelSearch = new JLabel(Textual.SEARCH);
+        JLabel labelSearch = new JLabel("Filter by name");
         panelSearch.add(labelSearch, "cell 0 0,alignx left,aligny center");
 
         fieldSearch = new JTextField();
@@ -314,10 +318,10 @@ public class RegisterScreen extends ScreenHelper {
     }
 
     private void clearFormatting() {
-        labelCPF.setForeground(BLACK);
-        labelName.setForeground(BLACK);
-        labelAddress.setForeground(BLACK);
-        labelPhone.setForeground(BLACK);
+        labelCPF.setForeground(GREY);
+        labelName.setForeground(GREY);
+        labelAddress.setForeground(GREY);
+        labelPhone.setForeground(GREY);
 
         imageCPF.setIcon(null);
         imageAddress.setIcon(null);

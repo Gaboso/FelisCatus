@@ -4,7 +4,6 @@ public class ValidateCPF {
 
     public boolean isCPF(String cpf) {
 
-        // Se o tamanho do cpf for diferente de 11 ou possuir ao 11 caracteres iguais
         if (cpf.length() != 11 || Validator.digitsAreEquals(cpf, 11)) {
             return false;
         } else {
@@ -12,7 +11,6 @@ public class ValidateCPF {
 
             ValidateCPF validateCPF = new ValidateCPF();
 
-            // Cálculo do 1° dígito verificador
             int sum = 0;
             int weight = 10;
             for (i = 0; i < 9; i++) {
@@ -23,7 +21,6 @@ public class ValidateCPF {
             int r = 11 - (sum % 11);
             char tenDigit = validateCPF.verifyR(r);
 
-            // Cálculo do 2° dígito verificador
             sum = 0;
             weight = 11;
 
@@ -35,7 +32,6 @@ public class ValidateCPF {
             r = 11 - (sum % 11);
             char elevenDigit = validateCPF.verifyR(r);
 
-            // Se os dígitos calculados são iguais os dígitos pegos.
             return (tenDigit == cpf.charAt(9)) && (elevenDigit == cpf.charAt(10));
         }
     }

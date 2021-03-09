@@ -6,7 +6,7 @@
 
     <groupId>com.github.gaboso</groupId>
     <artifactId>felis-catus</artifactId>
-    <version>2.1.4</version>
+    <version>2.2.0</version>
     <description>Simple CRUD in Java Swing with PostgreSQL</description>
 
     <organization>
@@ -34,7 +34,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <postgresql.version>42.2.19</postgresql.version>
-        <flyway.version>7.5.4</flyway.version>
+        <hibernate.version>5.4.29.Final</hibernate.version>
+        <flyway.version>6.5.7</flyway.version>
         <log.version>2.14.0</log.version>
     </properties>
 
@@ -44,14 +45,14 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.29.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.4.29.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -83,6 +84,18 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-intellij-themes</artifactId>
+            <version>1.0</version>
         </dependency>
 
     </dependencies>
@@ -123,7 +136,12 @@
                 <version>${flyway.version}</version>
                 <configuration>
                     <sqlMigrationSeparator>__</sqlMigrationSeparator>
-                    <configFile>src/main/resources/db/config/flyway.properties</configFile>
+                    <locations>
+                        <location>db/migration</location>
+                    </locations>
+                    <configFiles>
+                        <configFile>src/main/resources/db/config/flyway.properties</configFile>
+                    </configFiles>
                 </configuration>
             </plugin>
         </plugins>

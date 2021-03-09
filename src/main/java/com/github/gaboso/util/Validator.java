@@ -31,8 +31,9 @@ public class Validator {
             String[] patterns = {"rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r."};
 
             for (String pattern : patterns) {
-                if (addressLC.startsWith(pattern + " "))
+                if (addressLC.startsWith(pattern + " ")) {
                     return true;
+                }
             }
 
         }
