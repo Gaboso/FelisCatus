@@ -35,7 +35,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <postgresql.version>42.2.20</postgresql.version>
         <hibernate.version>5.4.30.Final</hibernate.version>
-        <flyway.version>7.8.1</flyway.version>
+        <flyway.version>7.8.2</flyway.version>
         <log.version>2.14.1</log.version>
     </properties>
 
