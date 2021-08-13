@@ -6,9 +6,9 @@ import com.github.gaboso.util.ReflectionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.io.Serializable;
 
 public class JpaDAO<T> implements DAO<T> {
 

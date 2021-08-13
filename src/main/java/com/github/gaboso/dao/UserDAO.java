@@ -6,9 +6,9 @@ import com.github.gaboso.util.JPAUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Query;
 
 public class UserDAO extends JpaDAO<User> {
 

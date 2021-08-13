@@ -6,7 +6,7 @@
 
     <groupId>com.github.gaboso</groupId>
     <artifactId>felis-catus</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
     <description>Simple CRUD in Java Swing with PostgreSQL</description>
 
     <organization>
@@ -21,21 +21,18 @@
         </license>
     </licenses>
     <scm>
-        <connection>
-            scm:git:git://github.com/Gaboso/FelisCatus.git
-        </connection>
-        <url>
-            https://github.com/Gaboso/FelisCatus
-        </url>
+        <connection>scm:git:git://github.com/Gaboso/FelisCatus.git</connection>
+        <url>https://github.com/Gaboso/FelisCatus</url>
     </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <postgresql.version>42.2.22</postgresql.version>
-        <hibernate.version>5.5.2.Final</hibernate.version>
-        <flyway.version>7.10.0</flyway.version>
+        <postgresql.version>42.2.23</postgresql.version>
+        <hibernate.version>5.5.6.Final</hibernate.version>
+        <flatlaf.version>1.5</flatlaf.version>
+        <flyway.version>7.13.0</flyway.version>
         <log.version>2.14.1</log.version>
     </properties>
 
@@ -89,13 +86,13 @@
         <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
-            <version>1.2</version>
+            <version>${flatlaf.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf-intellij-themes</artifactId>
-            <version>1.2</version>
+            <version>${flatlaf.version}</version>
         </dependency>
 
     </dependencies>
