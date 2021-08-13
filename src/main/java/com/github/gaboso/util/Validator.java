@@ -3,15 +3,14 @@ package com.github.gaboso.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import javax.swing.*;
 
 public class Validator {
 
     private Validator() {
     }
 
-    public static boolean all(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
-        boolean isRadioButtonIsSelected = female.isSelected() || male.isSelected();
+    public static boolean all(String address, String name, String cpf, String phone, boolean isMale, boolean isFemale) {
+        boolean isRadioButtonIsSelected = isFemale || isMale;
 
         return !name(name)
             || !cpf(cpf)
@@ -25,7 +24,7 @@ public class Validator {
     }
 
     public static boolean cpf(String cpf) {
-        if ("   .   .   -  ".equals(cpf) || cpf.contains(" ")) {
+        if (cpf.contains(" ")) {
             return false;
         }
 
@@ -36,23 +35,24 @@ public class Validator {
     }
 
     public static boolean address(String address) {
-        if (!address.isEmpty()) {
-            String addressLC = address.toLowerCase();
-            List<String> patterns = Arrays.asList("rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r.");
-            return patterns.stream()
-                           .anyMatch(pattern -> addressLC.startsWith(pattern + " "));
+        if (address.isEmpty()) {
+            return false;
         }
-        return false;
+
+        String addressLC = address.toLowerCase();
+        List<String> patterns = Arrays.asList("rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r.");
+        return patterns.stream()
+                       .anyMatch(pattern -> addressLC.startsWith(pattern + " "));
     }
 
     public static boolean phone(String phone) {
         if (phone.length() != 14 || digitsAreEquals(phone, 10)) {
             return false;
-        } else {
-            Pattern pattern = Pattern.compile("\\(\\d{2}\\) \\d{4}-\\d{4}");
-            return pattern.matcher(phone)
-                          .find();
         }
+
+        return Pattern.compile("\\(\\d{2}\\) \\d{4}-\\d{4}")
+                      .matcher(phone)
+                      .find();
     }
 
     public static boolean digitsAreEquals(String text, int minimumOccurrences) {

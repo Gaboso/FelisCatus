@@ -47,4 +47,29 @@ public abstract class ScreenHelper {
         return word.substring(0, 1).toUpperCase().concat(word.substring(1));
     }
 
+    protected void clearField(JTextField field, JLabel label, JLabel icon) {
+        if (label != null) {
+            label.setForeground(GREY);
+        }
+        if (icon != null) {
+            icon.setIcon(null);
+        }
+        if (!field.getText().isEmpty()) {
+            field.setText("");
+            if (field instanceof JFormattedTextField) {
+                ((JFormattedTextField) field).setValue("");
+            }
+        }
+    }
+
+    protected void setValidationStyle(boolean isValid, JLabel label, JLabel image) {
+        if (isValid) {
+            label.setForeground(GREEN);
+            image.setIcon(getImageIcon(Textual.OK_24));
+        } else {
+            label.setForeground(RED);
+            image.setIcon(getImageIcon(Textual.NOT_OK_24));
+        }
+    }
+
 }
