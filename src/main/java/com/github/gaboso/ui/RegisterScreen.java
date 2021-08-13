@@ -1,9 +1,6 @@
 package com.github.gaboso.ui;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
 import com.github.gaboso.constant.Textual;
 import com.github.gaboso.dao.UserDAO;
 import com.github.gaboso.helper.ScreenHelper;
@@ -16,8 +13,6 @@ import net.miginfocom.swing.MigLayout;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.swing.*;
-import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -26,6 +21,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
 public class RegisterScreen extends ScreenHelper {
 
@@ -33,7 +30,7 @@ public class RegisterScreen extends ScreenHelper {
 
     private static final int SEARCH_BY_NAME = 1;
     private static final int SEARCH_ALL = 2;
-
+    private final ButtonGroup radioGroupSex = new ButtonGroup();
     private JFrame mainFrame;
     private JTextField fieldName;
     private JFormattedTextField fieldCPF;
@@ -55,8 +52,6 @@ public class RegisterScreen extends ScreenHelper {
     private JRadioButton radioButtonMale;
 
     private JScrollPane scrollPane;
-
-    private final ButtonGroup radioGroupSex = new ButtonGroup();
     private JTable table;
 
     private JButton buttonUpdate;
@@ -75,7 +70,7 @@ public class RegisterScreen extends ScreenHelper {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                FlatNordIJTheme.install();
+                FlatNordIJTheme.setup();
                 RegisterScreen window = new RegisterScreen();
                 window.mainFrame.setVisible(true);
             } catch (Exception e) {
@@ -102,7 +97,7 @@ public class RegisterScreen extends ScreenHelper {
         registerPanel.setBorder(makeBorder(Textual.FORM));
         mainFrame.getContentPane().add(registerPanel, "cell 0 1,grow");
         registerPanel.setLayout(new MigLayout("", "[54px,grow][109px,grow][109px,grow][30.00]",
-            "[20px,grow][20px,grow][20px,grow][24px,grow][24px,grow][23px,grow]"));
+                                              "[20px,grow][20px,grow][20px,grow][24px,grow][24px,grow][23px,grow]"));
 
         labelName = new JLabel(Textual.NAME);
         registerPanel.add(labelName, "cell 0 0,growx,aligny center");
@@ -330,27 +325,22 @@ public class RegisterScreen extends ScreenHelper {
     }
 
     private void clearText() {
-        if (!fieldCPF.getText().isEmpty()) {
-            fieldCPF.setText("");
-        }
-
-        if (!fieldName.getText().isEmpty()) {
-            fieldName.setText("");
-        }
-
-        if (!fieldAddress.getText().isEmpty()) {
-            fieldAddress.setText("");
-        }
-
-        if (!fieldPhone.getText().isEmpty()) {
-            fieldPhone.setText("");
-        }
-
-        if (!fieldSearch.getText().isEmpty()) {
-            fieldSearch.setText("");
-        }
+        clearField(fieldCPF);
+        clearField(fieldName);
+        clearField(fieldAddress);
+        clearField(fieldPhone);
+        clearField(fieldSearch);
 
         radioGroupSex.clearSelection();
+    }
+
+    private void clearField(JTextField field) {
+        if (!field.getText().isEmpty()) {
+            field.setText("");
+            if (field instanceof JFormattedTextField) {
+                ((JFormattedTextField) field).setValue("");
+            }
+        }
     }
 
     private void getDataFromSelectedRow() {

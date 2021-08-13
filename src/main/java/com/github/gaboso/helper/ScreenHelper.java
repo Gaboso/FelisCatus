@@ -2,10 +2,10 @@ package com.github.gaboso.helper;
 
 import com.github.gaboso.constant.Textual;
 
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
 
 public abstract class ScreenHelper {
 
@@ -19,10 +19,6 @@ public abstract class ScreenHelper {
         return new TitledBorder(LINE_BORDER, title, TitledBorder.LEADING, TitledBorder.TOP, null, GREY);
     }
 
-    protected static ImageIcon getImageIcon(String imageName) {
-        return new ImageIcon(ScreenHelper.class.getResource("/img/" + imageName + ".png"));
-    }
-
     protected void showErrorMessage(JFrame frame, String message) {
         JOptionPane.showMessageDialog(
             frame,
@@ -31,6 +27,10 @@ public abstract class ScreenHelper {
             JOptionPane.ERROR_MESSAGE,
             getImageIcon(Textual.NOT_OK_48)
         );
+    }
+
+    protected static ImageIcon getImageIcon(String imageName) {
+        return new ImageIcon(ScreenHelper.class.getResource("/img/" + imageName + ".png"));
     }
 
     protected void showInfoMessage(JFrame frame, String message) {

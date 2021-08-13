@@ -1,41 +1,46 @@
 package com.github.gaboso.util;
 
-import javax.swing.*;
-import java.util.regex.Matcher;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+import javax.swing.*;
 
 public class Validator {
 
     private Validator() {
     }
 
-    public static boolean cpf(String cpf) {
-        if ("   .   .   -  ".equals(cpf)) {
-            return false;
-        } else {
-            ValidateCPF validateCPF = new ValidateCPF();
-            String cpfNoMask = cpf.replace(".", "");
-            cpfNoMask = cpfNoMask.replace("-", "");
+    public static boolean all(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
+        boolean isRadioButtonIsSelected = female.isSelected() || male.isSelected();
 
-            return validateCPF.isCPF(cpfNoMask);
-        }
+        return !name(name)
+            || !cpf(cpf)
+            || !isRadioButtonIsSelected
+            || !address(address)
+            || !phone(phone);
     }
 
     public static boolean name(String name) {
         return !name.isEmpty() && name.trim().length() < 70;
     }
 
+    public static boolean cpf(String cpf) {
+        if ("   .   .   -  ".equals(cpf) || cpf.contains(" ")) {
+            return false;
+        }
+
+        String cpfNoMask = cpf.replace(".", "")
+                              .replace("-", "");
+
+        return ValidateCPF.isCPF(cpfNoMask);
+    }
+
     public static boolean address(String address) {
         if (!address.isEmpty()) {
             String addressLC = address.toLowerCase();
-            String[] patterns = {"rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r."};
-
-            for (String pattern : patterns) {
-                if (addressLC.startsWith(pattern + " ")) {
-                    return true;
-                }
-            }
-
+            List<String> patterns = Arrays.asList("rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r.");
+            return patterns.stream()
+                           .anyMatch(pattern -> addressLC.startsWith(pattern + " "));
         }
         return false;
     }
@@ -45,16 +50,9 @@ public class Validator {
             return false;
         } else {
             Pattern pattern = Pattern.compile("\\(\\d{2}\\) \\d{4}-\\d{4}");
-            Matcher matcher = pattern.matcher(phone);
-            return matcher.find();
+            return pattern.matcher(phone)
+                          .find();
         }
-    }
-
-    public static boolean all(String address, String name, String cpf, String phone, JRadioButton male, JRadioButton female) {
-        boolean part1 = !name(name) || !cpf(cpf) || !radioButtonIsSelected(male, female);
-        boolean part2 = !address(address) || !phone(phone);
-
-        return part1 || part2;
     }
 
     public static boolean digitsAreEquals(String text, int minimumOccurrences) {
@@ -62,8 +60,9 @@ public class Validator {
             int occurrences = 0;
 
             for (int j = 0; j < text.length(); j++) {
-                if (text.charAt(i) == text.charAt(j))
+                if (text.charAt(i) == text.charAt(j)) {
                     occurrences++;
+                }
             }
 
             if (occurrences == minimumOccurrences) {
@@ -72,10 +71,6 @@ public class Validator {
         }
 
         return false;
-    }
-
-    private static boolean radioButtonIsSelected(JRadioButton male, JRadioButton female) {
-        return female.isSelected() || male.isSelected();
     }
 
 }

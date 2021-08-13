@@ -16,6 +16,16 @@ public class ManagerClient extends ScreenHelper {
         return base(frame, isSaved, "Registration successfully complete", Textual.CPF_ALREADY_EXISTS);
     }
 
+    private boolean base(JFrame frame, boolean result, String sucessMessage, String errorMessage) {
+        if (result) {
+            showInfoMessage(frame, sucessMessage);
+            return true;
+        } else {
+            showErrorMessage(frame, errorMessage);
+            return false;
+        }
+    }
+
     public boolean update(User user, JFrame frame) {
         UserDAO userDAO = new UserDAO();
         boolean isUpdated = userDAO.update(user) != null;
@@ -30,33 +40,25 @@ public class ManagerClient extends ScreenHelper {
         return base(frame, isRemoved, "Registration removed successfully", Textual.DELETE_USER_ERROR);
     }
 
-    private boolean base(JFrame frame, boolean result, String sucessMessage, String errorMessage) {
-        if (result) {
-            showInfoMessage(frame, sucessMessage);
-            return true;
-        } else {
-            showErrorMessage(frame, errorMessage);
-            return false;
-        }
-    }
-
     public User newValidUser(String name, String address, String cpf, String phone,
-                             JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {
-        char sex = ' ';
+        JRadioButton radioButtonFemale, JRadioButton radioButtonMale) {
 
         boolean error = Validator.all(address, name, cpf, phone, radioButtonMale, radioButtonFemale);
 
-        if (!error) {
-            if (radioButtonFemale.isSelected()) {
-                sex = 'f';
-            } else if (radioButtonMale.isSelected()) {
-                sex = 'm';
-            }
-
-            return new User(cpf, name, phone, address, sex);
+        if (error) {
+            return null;
         }
 
-        return null;
+        char sex;
+        if (radioButtonFemale.isSelected()) {
+            sex = 'f';
+        } else if (radioButtonMale.isSelected()) {
+            sex = 'm';
+        } else {
+            sex = ' ';
+        }
+
+        return new User(cpf, name, phone, address, sex);
     }
 
 }
