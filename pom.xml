@@ -32,7 +32,7 @@
         <postgresql.version>42.2.23</postgresql.version>
         <hibernate.version>5.5.6.Final</hibernate.version>
         <flatlaf.version>1.5</flatlaf.version>
-        <flyway.version>7.13.0</flyway.version>
+        <flyway.version>8.4.3</flyway.version>
         <log.version>2.14.1</log.version>
     </properties>
 
