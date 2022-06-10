@@ -29,7 +29,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <postgresql.version>42.3.4</postgresql.version>
+        <postgresql.version>42.4.0</postgresql.version>
         <hibernate.version>5.6.8.Final</hibernate.version>
         <flatlaf.version>2.1</flatlaf.version>
         <flyway.version>7.15.0</flyway.version>
