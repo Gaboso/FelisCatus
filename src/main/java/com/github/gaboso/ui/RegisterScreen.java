@@ -356,7 +356,7 @@ public class RegisterScreen extends ScreenHelper {
                 if (event.getClickCount() == 2) {
                     clearScreen();
 
-                    int rowNumber = table.getSelectedRow();
+                    int rowNumber = table.rowAtPoint(event.getPoint());
                     User user = getUserFromSelectedRow(rowNumber);
                     setUserOnFields(user);
 
