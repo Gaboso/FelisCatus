@@ -26,7 +26,7 @@ public class Textual {
     // masks
     public static final String CPF_MASK = "###.###.###-##";
     public static final String PHONE_MASK = "(##) ####-####";
-    private static final String VERSION = "2.3.3";
+    private static final String VERSION = "2.3.4";
     public static final String TITLE = "FelisCatus - " + VERSION;
 
     private Textual() {
