@@ -1,8 +1,7 @@
 package com.github.gaboso.util;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Validator {
 
@@ -35,14 +34,13 @@ public class Validator {
     }
 
     public static boolean address(String address) {
-        if (address.isEmpty()) {
+        if (address == null || address.isEmpty()) {
             return false;
         }
 
         String addressLC = address.toLowerCase();
-        List<String> patterns = Arrays.asList("rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r.");
-        return patterns.stream()
-                       .anyMatch(pattern -> addressLC.startsWith(pattern + " "));
+        return Stream.of("rua", "avenida", "alameda", "av.", "beco", "viela", "praça", "r.")
+                     .anyMatch(pattern -> addressLC.startsWith(pattern + " "));
     }
 
     public static boolean phone(String phone) {

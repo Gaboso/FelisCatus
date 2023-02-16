@@ -4,19 +4,21 @@ import java.util.List;
 
 public class Matrix {
 
+    public static final int QUANTITY_OF_COLUMNS = 5;
+
     private Matrix() {
     }
 
-    public static String[][] create(List<String[]> dataFromDB) {
-        int size = dataFromDB.size();
+    public static String[][] parse(List<String[]> dataFromDB) {
+        int quantityOfLines = dataFromDB.size();
 
-        String[][] table = new String[size][5];
+        String[][] table = new String[quantityOfLines][QUANTITY_OF_COLUMNS];
 
-        for (int line = 0; line < size; line++) {
-            Object[] lineData = dataFromDB.get(line);
+        for (int currentLine = 0; currentLine < quantityOfLines; currentLine++) {
+            Object[] lineData = dataFromDB.get(currentLine);
 
-            for (int column = 0; column < 5; column++) {
-                table[line][column] = lineData[column].toString();
+            for (int currentColumn = 0; currentColumn < QUANTITY_OF_COLUMNS; currentColumn++) {
+                table[currentLine][currentColumn] = lineData[currentColumn].toString();
             }
         }
 

@@ -13,6 +13,8 @@ import net.miginfocom.swing.MigLayout;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -21,8 +23,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
-import javax.swing.*;
-import javax.swing.text.MaskFormatter;
+import java.util.List;
 
 public class RegisterScreen extends ScreenHelper {
 
@@ -343,11 +344,11 @@ public class RegisterScreen extends ScreenHelper {
     private void refreshTable(int selectedOption, String filter) {
         UserDAO userDAO = new UserDAO();
 
-        String[][] data = selectedOption == SEARCH_BY_NAME
-            ? Matrix.create(userDAO.findByName(filter))
-            : Matrix.create(userDAO.findAll());
-
-        ModelTableUser tableModel = new ModelTableUser(data);
+        List<String[]> data = selectedOption == SEARCH_BY_NAME
+            ? userDAO.findByName(filter)
+            : userDAO.findAll();
+        String[][] dataMatrix = Matrix.parse(data);
+        ModelTableUser tableModel = new ModelTableUser(dataMatrix);
 
         table = new JTable(tableModel);
         table.addMouseListener(new MouseAdapter() {
